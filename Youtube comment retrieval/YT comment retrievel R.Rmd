@@ -1,0 +1,72 @@
+---
+title: "Youtube Comment Data Collection Strategies in R"
+author: "Blaize Guerra"
+date: "10/11/2019"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r VosonSML, eval=FALSE, message=FALSE, include=FALSE}
+# Google developer API key
+library(vosonSML)
+
+apikey <- "AIzaSyBjszB1Ap335V9r-3IBd2QsUXbm-ZGiJ9s"
+key <- Authenticate(
+  "youtube",  
+  apiKey = 
+    "AIzaSyBjszB1Ap335V9r-3IBd2QsUXbm-ZGiJ9s")
+```
+
+
+
+
+```{r data collection, eval=FALSE, include=FALSE}
+video <- c('JxPj3GAYYZ0')
+ytdata <- Collect(key, video, writeToFile = FALSE, maxComments = 1000)
+str(ytdata)
+write.csv(ytdata, file='yt.csv', row.names = FALSE)
+
+#We now have a csv file to work with in python or we can continue with the data preprocessing in the next steps
+```
+
+
+
+```{r corpus}
+#Build corpus
+
+library(tm)
+corpus <- iconv(ytdata$Comment, to ="UTF-8")
+corpus <- Corpus(VectorSource(corpus))
+inspect(corpus[1:5])
+
+#Clean text
+
+corpus <- tm_map(corpus, tolower)
+inspect(corpus[1:5])
+
+corpus <- tm_map(corpus, removePunctuation)
+inspect(corpus[1:5])
+
+corpus <- tm_map(corpus, removeNumbers)
+inspect(corpus[1:5])
+
+cleanset <- tm_map(corpus, removeWords, stopwords('english'))
+inspect(cleanset[1:5])
+
+removeURL <- function(x) gsub('http[[:alnum:]]*','',x)
+cleanset <- tm_map(cleanset, content_transformer(removeURL))
+inspect(cleanset[1:20])
+
+cleanset <- tm_map(cleanset, stripWhitespace)
+inspect(cleanset[1:20])
+
+cleanset <- tm_map(cleanset, removeWords, c('song', 'ufufuf', 'uufef','got','get','made','someone','ever','sure','thats','listen'))
+
+# write clean data to text file to work with in Python
+
+writeLines(as.character(cleanset), con = "9thsymph.txt")
+```
+
+
