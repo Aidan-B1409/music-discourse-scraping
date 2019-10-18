@@ -166,7 +166,9 @@ dmypy.json
  .idea/modules
  *.iml
  *.ipr
- .idea/
+
+# aidan's manual override to get rid of idea files
+ Reddit-Scraping/.idea/
 
 # CMake
 cmake-build-*/
