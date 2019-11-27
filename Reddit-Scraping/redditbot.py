@@ -1,4 +1,5 @@
 import praw
+import csv
 
 reddit = praw.Reddit('bot1')
 subreddit = reddit.subreddit("music")
@@ -8,13 +9,15 @@ def MineSubreddit(sub):
     for submission in sub.hot(limit=1):
         print("Title: ", submission.title)
         submission.comments.replace_more(limit=None)
-        for comment in submission.comments.list():
-            print(comment.body)
-            n = n + 1
-        print(n)
+        with open('data.csv', 'w') as csvfile:
+            filewriter = csv.writer(csvfile, delimiter=',', quotechar='|')
+            for comment in submission.comments.list():
+                comm = comment.body.encode()
+                filewriter.writerow([n, comm])
+                n += 1
 
 
-def SearchSubreddit(sub, keyword):
+def searchSubreddit(sub, keyword):
     #Creates a search query which is sorted by relevance to keyword, syntax = lucene, time-filter = all
     for submission in sub.search(keyword, 'relevance', 'lucene', 'all'):
         print(submission.title)
@@ -24,8 +27,8 @@ def getSubreddits(data_txt):
     with open(data_txt) as f:
         content = f.readlines()
     #strip out newline characters
-    content = [x.strip('\n') for x in content]
-
+    content = [x.replace('\n','+') for x in content]
+    return content
 
 if __name__ == '__main__':
-    getSubreddits(r'subreddits.txt')
+    MineSubreddit(subreddit)
