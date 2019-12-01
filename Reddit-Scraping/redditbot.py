@@ -1,15 +1,17 @@
 import praw
 import csv
+from datetime import datetime
 
 reddit = praw.Reddit('bot1')
 subreddit = reddit.subreddit("music")
 
 def MineSubreddit(sub):
     n = 0
+    dtime_string = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     for submission in sub.hot(limit=1):
         print("Title: ", submission.title)
         submission.comments.replace_more(limit=None)
-        with open('data.csv', 'w') as csvfile:
+        with open('data' + dtime_string + '.csv', 'w') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',', quotechar='|')
             for comment in submission.comments.list():
                 comm = comment.body.encode()
