@@ -16,7 +16,7 @@ df = pd.DataFrame(np.array(final), columns = ['Words'])
 import nltk
 
 
-dataset = open("cleantxt.txt", "r")
+dataset = open("9thcleantxt.txt", "r")
 comments = dataset.read()
 
 def tokenize():
