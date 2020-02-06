@@ -23,7 +23,7 @@ def mineComments(resultsList):
     dtime_string = datetime.now().strftime('%d-%m-%Y%H-%M-%S')
     with open('reddit_'+dtime_string+'.csv', 'w', encoding='utf-8', newline='') as csvfile:
         fileWriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        fileWriter.writerow(["Query Index", "Query", "Submission Index", "Subreddit", "Submission Title", "Submission ID", "Submission Score", "Comment", "Comment ID", "Comment Index", "Comment Score" ])
+        fileWriter.writerow(["Comment Index", "Submission ID", "Submission Title", "Comment Body", "Comment Score", "Query", "Subreddit Name", "Comment ID"])
 
         for submission in resultsList:
             for comment in submission.comments:
