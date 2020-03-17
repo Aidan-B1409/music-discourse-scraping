@@ -1,22 +1,24 @@
 import praw
 import csv
 from datetime import datetime
+from pandas import DataFrame, read_csv
+import pandas as pd
+from query import Query
 
 reddit = praw.Reddit('bot1')
 """TODO - Make megasubreddit object based on subreddits.txt"""
-subreddit = reddit.subreddit("all")
-"""TODO - Automate searching of multiple queries based on txt object"""
-query = 'title:"Madeon" "All My Friends"'
-"""Very important constant, defines how deep the getSubmissions method will search"""
-SEARCHLIMIT = 3
 
-def getSubmissions(keyword):
-    searchResults = list()
-    for submission in subreddit.search(keyword, 'top', 'lucene', "all",limit=SEARCHLIMIT):
-        submission.comments.replace_more()
-        searchResults.append(submission)
-    return searchResults
-def mineComments(resultsList):
+def readQueries():
+    queries = list()
+    file = r'test.csv'
+    df = pd.read_csv(file)[['artist_name', 'track_name']]
+    ##print(df.head(5))
+    for index, row in df.iterrows():
+        print(row['artist_name'], row['track_name'])
+        query = Query(row['artist_name'], row['track_name'], reddit);
+        mineComments(query.getSubmissions(), query);
+
+def mineComments(resultsList, query):
     """counter for CSV rows"""
     n = 0
     """Time of CSV initialization"""
@@ -32,7 +34,7 @@ def mineComments(resultsList):
                 commentBody = comment.body.replace(",","").encode('utf-8', "ignore");
                 commentBody = str(commentBody, encoding = 'utf-8');
                 commentScore = comment.score
-                entryQuery = query
+                entryQuery = query.query
                 subredditName = comment.subreddit.display_name
                 print(subredditName)
                 commentID = comment.id
@@ -43,4 +45,6 @@ def mineComments(resultsList):
 
 
 if __name__ == '__main__':
-    mineComments((getSubmissions(query)))
+    readQueries()
+    #query = Query("Madeon", "All My Friends", reddit);
+    #mineComments(query.getSubmissions())
