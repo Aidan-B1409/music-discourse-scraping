@@ -1,0 +1,1 @@
+C:\Users\AidanBeery\Coding\music-conversation-scraping\Reddit-Scraping\venv\Scripts\python.exe C:/Users/AidanBeery/Coding/music-conversation-scraping/Reddit-Scraping/pulldownbot.py "-i test.csv"
