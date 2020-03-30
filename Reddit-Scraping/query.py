@@ -1,7 +1,7 @@
 import csv
 import datetime
-from tqdm import tqdm
 import time
+from tqdm import tqdm
 from datetime import datetime
 
 
@@ -13,7 +13,8 @@ class Query:
     search_keyword = "null"
     SEARCH_LIMIT = 3
 
-    def __init__(self, track: str, artist: str, reddit: object):
+    def __init__(self, cwd: str, track: str, artist: str, reddit: object):
+        self.cwd = cwd
         self.track = track
         self.artist = artist
         self.reddit = reddit
@@ -32,7 +33,7 @@ class Query:
         """Time of CSV initialization"""
         dtime_string = datetime.now().strftime('%d-%m-%Y-%H-%M-%S')
         file_name = 'reddit_' + dtime_string + "_" + str(deezer_id) + ".csv"
-        with open(file_name, 'w', newline='', encoding='utf-8') as csvfile:
+        with open(self.cwd + file_name, 'w', newline='', encoding='utf-8') as csvfile:
             file_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             file_writer.writerow(
                 ["Query Index", "Query", "Valence", "Arousal", "Result Index", "Subreddit", "Subreddit ID",

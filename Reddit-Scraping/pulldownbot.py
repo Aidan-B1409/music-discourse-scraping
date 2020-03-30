@@ -1,13 +1,23 @@
 import praw
 import sys
+import os
 import getopt
 import pandas as pd
 from query import Query
 
 reddit = praw.Reddit('bot1')
+cwd = os.path.join(os.getcwd(), "downloads\\")
 
 
-def get_args(argv: str):
+def make_downloads() -> None:
+    try:
+        os.mkdir(cwd)
+    except OSError as e:
+        print(e)
+        return
+
+
+def get_args(argv: str) -> str:
     input_file = ""
     try:
         opts, args = getopt.getopt(argv, "hi:", ["input_file="])
@@ -28,7 +38,7 @@ def read_queries(input_file: str) -> None:
     df = pd.read_csv(input_file.strip())
     for index, row in df.iterrows():
         print(row['artist_name'], row['track_name'])
-        query = Query(row['artist_name'], row['track_name'], reddit)
+        query = Query(cwd, row['artist_name'], row['track_name'], reddit)
         valence = row['valence']
         arousal = row['arousal']
         deezer_id = row['dzr_sng_id']
@@ -36,6 +46,7 @@ def read_queries(input_file: str) -> None:
 
 
 if __name__ == '__main__':
+    make_downloads()
     inputFile = get_args(sys.argv[1:])
     read_queries(inputFile)
     # MANUAL TEST QUERY
