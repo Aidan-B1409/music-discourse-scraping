@@ -1,6 +1,7 @@
 import csv
 import datetime
 import time
+from praw import Reddit
 from tqdm import tqdm
 from datetime import datetime
 
@@ -11,9 +12,9 @@ def build_query(track: str, artist: str) -> str:
 
 class Query:
     search_keyword = "null"
-    SEARCH_LIMIT = 3
+    SEARCH_LIMIT = 10
 
-    def __init__(self, cwd: str, track: str, artist: str, reddit: object):
+    def __init__(self, cwd: str, track: str, artist: str, reddit: Reddit):
         self.cwd = cwd
         self.track = track
         self.artist = artist
@@ -71,6 +72,6 @@ class Query:
             else:
                 file_writer.writerow(
                     [query_index, self.search_keyword, valence, arousal, "", "", "", "",
-                     "", "", "No Results", "", "", "", "",
+                     "", "", "", "", "", "", "",
                      "", "", "", deezer_id])
                 print("No Results")
