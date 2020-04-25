@@ -1,3 +1,4 @@
+import pylast
 
 def main():
     print("Hello World!")
