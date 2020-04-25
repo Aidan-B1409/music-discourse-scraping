@@ -37,11 +37,11 @@ def get_args(argv: str) -> str:
 def read_queries(input_file: str) -> None:
     df = pd.read_csv(input_file.strip())
     for index, row in df.iterrows():
-        print(row['artist_name'], row['track_name'])
-        query = Query(cwd, row['artist_name'], row['track_name'], reddit)
-        valence = row['valence']
-        arousal = row['arousal']
-        deezer_id = row['dzr_sng_id']
+        print(row['Artist'], row['Song_title'])
+        query = Query(cwd, row['Artist'], row['Song_title'], reddit)
+        valence = row['Valence']
+        arousal = row['Arousal']
+        deezer_id = row['song_id']
         query.mine_comments(index, valence, arousal, deezer_id)
 
 
