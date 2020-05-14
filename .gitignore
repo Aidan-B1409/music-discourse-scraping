@@ -161,15 +161,15 @@ dmypy.json
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
- .idea/modules.xml
- .idea/*.iml
+ **/.idea/modules.xml
+ **/.idea/*.iml
  .idea/modules
  *.iml
  *.ipr
 
 # aidan's manual override to get rid of idea files
  Reddit-Scraping/.idea/
- .idea/
+ **/.idea/*/*
 
 # CMake
 cmake-build-*/
@@ -208,3 +208,11 @@ Reddit-Scraping/.idea/
 
 #OSX DSStore
 .DS_Store
+
+LastFMBot/.idea/
+
+SoundcloudBot/.idea/sonarlint/issuestore/a/c/ac95095330a4a20b1f198c92db70024a198bb660
+
+SoundcloudBot/.idea/sonarlint/issuestore/index.pb
+
+*.csv
