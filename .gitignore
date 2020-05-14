@@ -169,7 +169,7 @@ dmypy.json
 
 # aidan's manual override to get rid of idea files
  Reddit-Scraping/.idea/
- .idea/
+ **/.idea/
 
 # CMake
 cmake-build-*/
