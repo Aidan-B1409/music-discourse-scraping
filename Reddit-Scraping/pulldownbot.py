@@ -41,8 +41,8 @@ def read_queries(input_file: str) -> None:
         query = Query(cwd, row['Artist'], row['Song_title'], reddit)
         valence = row['Valence']
         arousal = row['Arousal']
-        deezer_id = row['song_id']
-        query.mine_comments(index, valence, arousal, deezer_id)
+        song_id = row['song_id']
+        query.mine_comments(index, valence, arousal, song_id)
 
 
 if __name__ == '__main__':
