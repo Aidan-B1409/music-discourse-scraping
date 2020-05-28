@@ -1,4 +1,6 @@
 import pylast
+import pandas
+
 
 def main():
     print("Hello World!")

@@ -216,3 +216,5 @@ SoundcloudBot/.idea/sonarlint/issuestore/a/c/ac95095330a4a20b1f198c92db70024a198
 SoundcloudBot/.idea/sonarlint/issuestore/index.pb
 
 *.csv
+
+LastFMBot/config.ini
