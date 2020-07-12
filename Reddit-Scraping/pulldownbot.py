@@ -6,7 +6,7 @@ import pandas as pd
 from query import Query
 
 reddit = praw.Reddit('bot1')
-cwd = os.path.join(os.getcwd(), "downloads\\")
+cwd = os.path.join(os.getcwd(), "downloads/")
 
 
 def make_downloads() -> None:

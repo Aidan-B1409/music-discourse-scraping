@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 def build_query(track: str, artist: str) -> str:
-    return str("title:" + "\"" + track + "\"" + " " + "\"" + artist + "\"")
+    return str("title:" + "\"" + track.strip() + "\"" + " " + "\"" + artist.strip() + "\"")
 
 
 class Query:
@@ -16,8 +16,8 @@ class Query:
 
     def __init__(self, cwd: str, track: str, artist: str, reddit: Reddit):
         self.cwd = cwd
-        self.track = track
-        self.artist = artist
+        self.track = track.strip()
+        self.artist = artist.strip()
         self.reddit = reddit
         self.subreddit = reddit.subreddit("all")
         self.search_keyword = build_query(track, artist)
