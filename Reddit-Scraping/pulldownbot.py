@@ -40,7 +40,7 @@ def read_queries(input_file: str) -> None:
         artist = row['Artist'].strip()
         song = row['Song_title'].strip()
         print(artist, song)
-        query = Query(cwd, artist, row, reddit)
+        query = Query(cwd, song, artist, reddit)
         valence = row['Valence']
         arousal = row['Arousal']
         song_id = row['song_id']

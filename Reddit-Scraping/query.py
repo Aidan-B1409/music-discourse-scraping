@@ -7,7 +7,9 @@ from datetime import datetime
 
 
 def build_query(track: str, artist: str) -> str:
-    return str("title:" + "\"" + track + "\"" + " " + "\"" + artist + "\"")
+    assert(isinstance(track, str))
+    assert(isinstance(artist, str))
+    return str("title:" + "\"" + artist + "\"" + " " + "\"" + track + "\"")
 
 
 class Query:
@@ -20,7 +22,7 @@ class Query:
         self.artist = artist
         self.reddit = reddit
         self.subreddit = reddit.subreddit("all")
-        self.search_keyword = build_query(track, artist)
+        self.search_keyword = build_query(self.track, self.artist)
 
     def get_submissions(self) -> list:
         submission_list = list()
