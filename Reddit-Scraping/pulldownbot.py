@@ -37,8 +37,10 @@ def get_args(argv: str) -> str:
 def read_queries(input_file: str) -> None:
     df = pd.read_csv(input_file.strip())
     for index, row in df.iterrows():
-        print(row['Artist'], row['Song_title'])
-        query = Query(cwd, row['Artist'], row['Song_title'], reddit)
+        artist = row['Artist'].strip()
+        song = row['Song_title'].strip()
+        print(artist, song)
+        query = Query(cwd, artist, row, reddit)
         valence = row['Valence']
         arousal = row['Arousal']
         song_id = row['song_id']
