@@ -18,11 +18,12 @@ class Query:
             file_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             file_writer.writerow(["Query Index", "Artist", "Track", "Valence", "Arousal", "Song ID"])
             file_writer.writerow([query_index, self.artist, self.track, valence, arousal, song_id])
-            print(self.lastfm.api_key)
             tags = self.track.get_top_tags()
+
             if(len(tags) > 0):
-                file_writer.writerow(["Tags:", tags])
+                tag_names = list()
+                for idx, tag in enumerate(tags):
+                    tag_names.append(tag[0].get_name())
 
 
-
-
+                file_writer.writerow(["Tags:", tag_names])
