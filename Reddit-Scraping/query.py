@@ -41,7 +41,6 @@ class Query:
             file_writer.writerow(
                 ["Query Index", "Query", "Valence", "Arousal", "Result Index", "Subreddit", "Subreddit ID",
                  "Submission Title", "Submission Body", "SubmissionID", "Comment Body", "Comment ID", "Comment Index",
-                 "Comment Replies", "Comment Score", "Submission Comments", "Submission URL", "Submission Score"
                  "Song ID"])
             submissions_list = self.get_submissions()
             if len(submissions_list) > 0:
