@@ -20,8 +20,7 @@ class Query:
         file_name='lastfm_tags_' + dtime_string + "_" + str(song_id) + ".csv"
         with open(self.cwd + file_name, 'w', newline='', encoding='utf-8') as csvfile:
             file_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            file_writer.writerow(["Query Index", "Artist", "Track", "Valence", "Arousal", "Song ID"])
-            file_writer.writerow([query_index, self.artist, self.track, valence, arousal, song_id])
+            file_writer.writerow(["Query Index", "Artist", "Track", "Valence", "Arousal", "Song ID", "Tags"])
 
             tag_names = list()
             if(self.result != None):
@@ -36,4 +35,4 @@ class Query:
             else:
                 tag_names.append("Track Not Found")
 
-            file_writer.writerow(["Tags:", tag_names])
+            file_writer.writerow([query_index, self.artist, self.track, valence, arousal, song_id, tag_names])
