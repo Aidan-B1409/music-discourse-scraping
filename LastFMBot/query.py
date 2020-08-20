@@ -1,4 +1,5 @@
 from pylast import LastFMNetwork
+from pylast import WSError
 import csv
 from datetime import datetime
 
@@ -9,7 +10,10 @@ class Query:
         self.track = track
         self.artist = artist
         self.lastfm = lastfm
-        self.track = lastfm.get_track(artist, track)
+        try:
+            self.result = lastfm.get_track(artist, track)
+        except(WSError):
+            self.result = None
 
     def mine_tags(self, query_index: str, valence: str, arousal: str, song_id: str) -> None:
         dtime_string = datetime.now().strftime('%d-%m-%Y-%H-%M-%S')
@@ -18,12 +22,18 @@ class Query:
             file_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             file_writer.writerow(["Query Index", "Artist", "Track", "Valence", "Arousal", "Song ID"])
             file_writer.writerow([query_index, self.artist, self.track, valence, arousal, song_id])
-            tags = self.track.get_top_tags()
 
-            if(len(tags) > 0):
-                tag_names = list()
-                for idx, tag in enumerate(tags):
-                    tag_names.append(tag[0].get_name())
+            tag_names = list()
+            if(self.result != None):
+                tags = None
+                try:
+                    tags = self.result.get_top_tags()
+                except(WSError):
+                    tags = None
+                if(tags != None):
+                    for idx, tag in enumerate(tags):
+                        tag_names.append(tag[0].get_name())
+            else:
+                tag_names.append("Track Not Found")
 
-
-                file_writer.writerow(["Tags:", tag_names])
+            file_writer.writerow(["Tags:", tag_names])

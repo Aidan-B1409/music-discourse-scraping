@@ -42,12 +42,12 @@ def get_args(argv: str) -> None:
 def read_queries(input_file: str, network: LastFMNetwork) -> None:
     df = pd.read_csv(input_file.strip())
     for index, row in df.iterrows():
-        artist = row['Artist'].strip()
-        song = row['Song_title'].strip()
+        artist = row['artist_name'].strip()
+        song = row['track_name'].strip()
         query = Query(cwd, song, artist, network)
-        valence = row['Valence']
-        arousal = row['Arousal']
-        song_id = row['song_id']
+        valence = row['valence']
+        arousal = row['arousal']
+        song_id = row['dzr_sng_id']
         print(artist, song)
         query.mine_tags(index, valence, arousal, song_id)
 
