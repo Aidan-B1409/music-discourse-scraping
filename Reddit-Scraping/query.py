@@ -65,11 +65,11 @@ class Query:
                                  comment_id, comment_index, comment_replies, comment_score, submission_comments,
                                  submission_url, submission_score, deezer_id])
                     time.sleep(0.1)
-                else:
+                """else:
                     file_writer.writerow(
                         [query_index, self.search_keyword, valence, arousal, "", "", "", "",
                          "", "", "End Of File", "", "", "", "",
-                         "", "", "", deezer_id])
+                         "", "", "", deezer_id])"""
             else:
                 file_writer.writerow(
                     [query_index, self.search_keyword, valence, arousal, "", "", "", "",
