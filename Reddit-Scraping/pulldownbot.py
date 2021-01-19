@@ -6,7 +6,7 @@ import pandas as pd
 from query import Query
 
 reddit = praw.Reddit('bot1')
-cwd = os.path.join(os.getcwd(), "downloads\\")
+cwd = os.path.join(os.getcwd(), "downloads/")
 
 
 def make_downloads() -> None:
@@ -37,12 +37,14 @@ def get_args(argv: str) -> str:
 def read_queries(input_file: str) -> None:
     df = pd.read_csv(input_file.strip())
     for index, row in df.iterrows():
-        print(row['Artist'], row['Song_title'])
-        query = Query(cwd, row['Artist'], row['Song_title'], reddit)
-        valence = row['Valence']
-        arousal = row['Arousal']
-        deezer_id = row['song_id']
-        query.mine_comments(index, valence, arousal, deezer_id)
+        artist = row['artist_name'].strip()
+        song = row['track_name'].strip()
+        print(artist, song)
+        query = Query(cwd, song, artist, reddit)
+        valence = row['valence']
+        arousal = row['arousal']
+        song_id = row['dzr_sng_id']
+        query.mine_comments(index, valence, arousal, song_id)
 
 
 if __name__ == '__main__':

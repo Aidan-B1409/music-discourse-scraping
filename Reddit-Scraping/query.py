@@ -7,7 +7,9 @@ from datetime import datetime
 
 
 def build_query(track: str, artist: str) -> str:
-    return str("title:" + "\"" + track + "\"" + " " + "\"" + artist + "\"")
+    assert(isinstance(track, str))
+    assert(isinstance(artist, str))
+    return str("title:" + "\"" + artist + "\"" + " " + "\"" + track + "\"")
 
 
 class Query:
@@ -20,7 +22,7 @@ class Query:
         self.artist = artist
         self.reddit = reddit
         self.subreddit = reddit.subreddit("all")
-        self.search_keyword = build_query(track, artist)
+        self.search_keyword = build_query(self.track, self.artist)
 
     def get_submissions(self) -> list:
         submission_list = list()
@@ -39,8 +41,7 @@ class Query:
             file_writer.writerow(
                 ["Query Index", "Query", "Valence", "Arousal", "Result Index", "Subreddit", "Subreddit ID",
                  "Submission Title", "Submission Body", "SubmissionID", "Comment Body", "Comment ID", "Comment Index",
-                 "Comment Replies", "Comment Score", "Submission Comments", "Submission URL", "Submission Score"
-                 "Deezer ID"])
+                 "Song ID"])
             submissions_list = self.get_submissions()
             if len(submissions_list) > 0:
                 for result_index, submission in enumerate(tqdm(submissions_list)):
@@ -64,11 +65,11 @@ class Query:
                                  comment_id, comment_index, comment_replies, comment_score, submission_comments,
                                  submission_url, submission_score, deezer_id])
                     time.sleep(0.1)
-                else:
+                """else:
                     file_writer.writerow(
                         [query_index, self.search_keyword, valence, arousal, "", "", "", "",
                          "", "", "End Of File", "", "", "", "",
-                         "", "", "", deezer_id])
+                         "", "", "", deezer_id])"""
             else:
                 file_writer.writerow(
                     [query_index, self.search_keyword, valence, arousal, "", "", "", "",
