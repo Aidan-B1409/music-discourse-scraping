@@ -216,5 +216,10 @@ SoundcloudBot/.idea/sonarlint/issuestore/a/c/ac95095330a4a20b1f198c92db70024a198
 SoundcloudBot/.idea/sonarlint/issuestore/index.pb
 
 *.csv
-
+#Ignore plots
+*.png
+#don't ignore wordlists
+!util/reddit_wordcloud/wordlists/*.csv
+!util/feature_extraction/wordlists/*.csv
+*.zip
 LastFMBot/config.ini
