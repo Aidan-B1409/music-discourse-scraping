@@ -22,7 +22,14 @@ class TestFeatureExtractor(unittest.TestCase):
         wl = WordLists()
         self.assertEqual(wl.dir, 'wordlists/')
 
-    def 
+    def test_has_filepath_dict(self):
+        """
+        Wordlists has a constant, ugly dict storing the filenames for
+        certain wordlists
+        """
+        wl = WordLists()
+        self.assertEqual(type(wl.wordlists), dict)
+
 
 
 if __name__ == "__main__":

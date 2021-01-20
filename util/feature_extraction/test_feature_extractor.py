@@ -18,6 +18,13 @@ class TestFeatureExtractor(unittest.TestCase):
         fe = FeatureExtractor()
         self.assertNotEqual(fe.wordlists, None)
 
+    def test_has_comment_dir(self):
+        """
+        The feature extractor has a path to the comments
+        """
+        fe = FeatureExtractor
+        self.assertEqual((fe.comments, None))
+
 
 if __name__ == "__main__":
     unittest.main()

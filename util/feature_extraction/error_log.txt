@@ -1,6 +1,6 @@
-reddit_27-09-2020-19-31-00_3116194.csv
-local variable 'hssent_uniq_avg' referenced before assignment
+reddit_02-04-2020-15-10-06_2228238.csv
+division by zero
 
-reddit_27-09-2020-16-31-40_1043898.csv
-local variable 'hssent_uniq_avg' referenced before assignment
+reddit_02-04-2020-17-55-31_13131942.csv
+division by zero
 
