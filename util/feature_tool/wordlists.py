@@ -24,8 +24,8 @@ class WordLists():
     def get_path(self, key) -> str:
         return self.dir + self.wordlists[key]
 
-    def load_EmoVAD(self, key) -> pd.DataFrame:
-        return pd.read_csv(self.get_path("EmoVAD"), names=['Word','Emotion','Association'], skiprows=1, sep='\t')
+    def load_EmoVAD(self) -> pd.DataFrame:
+        return pd.read_csv(self.get_path("EmoVAD"), names=['Word','Valence','Arousal','Dominance'], skiprows=1,  sep='\t')
 
 
 
