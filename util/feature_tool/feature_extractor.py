@@ -1,7 +1,7 @@
-from os import walk
 import pandas as pd
+import re
+from os import walk
 from datetime import datetime
-
 
 from wordlists import WordLists
 from csv_builder import CSVBuilder
@@ -30,17 +30,27 @@ class FeatureExtractor:
     # Generate song level features
     def generate_features(self, df) -> list:
         features = []
-        features.append(str(self.n_comments(df)))
+        features.append(str(self.song_id(df)))
+        features.append(self.song_name(df))        
+        features.append(self.n_comments(df))
         return features
 
-    def n_comments(self, df):
-        return len(df)
+    #I want this as an int unlike the other features so that I can use it in following calculations. 
+    def n_comments(self, df) -> int:
+        #We subtract one from the length because the last row is just metadata, not comments. 
+        return len(df) - 1
 
-    # def song_id(self, df):
-    #     return df[deezer]
+    def song_id(self, df) -> str:
+        return str(df.iloc[0]['Song ID'])
+
+    def song_name(self, df) -> str:
+        query = str(df.iloc[0]['Query'])
+        songname = re.sub(r"title:", "", query)
+        songname = re.sub(r'"', "", songname)
+        return songname
 
 
 if __name__ == "__main__":
-    fe = FeatureExtractor(comment_path="/mnt/d/Datasets/deezer_new")
+    fe = FeatureExtractor(comment_path="/mnt/g/new_data/subset_deezer_test")
     fe.main()
 

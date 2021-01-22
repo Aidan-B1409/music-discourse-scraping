@@ -8,9 +8,7 @@ class CSVBuilder:
 
     def writeheader(self) -> None:
         self.csvwriter.writerow(
-            ["Song ID"]
-            ["Song Name"]
-            ["Number of Comments"]
+            ["Song ID", "Song Name", "Number of Comments"]
             )
 
     def writerow(self, features: list) -> None: 
