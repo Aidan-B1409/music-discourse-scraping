@@ -22,12 +22,29 @@ class FeatureExtractor:
         "existing_valence": "", "existing_arousal": "",
         "n_comments": -1, "n_words": -1, "n_words_uniq": -1,
         "comment_length_mean": 0, "comment_length_stdev": 0,
+        
         "EmoVAD_glob_v_mean": 0.0, "EmoVAD_glob_v_stdev": 0.0,
         "EmoVAD_glob_a_mean": 0.0, "EmoVAD_glob_a_stdev": 0.0,
         "EmoVAD_glob_d_mean": 0.0, "EmoVAD_glob_d_stdev": 0.0,
         "EmoVAD_glob_v_mean_uniq": 0.0, "EmoVAD_glob_v_stdev_uniq": 0.0,
         "EmoVAD_glob_a_mean_uniq": 0.0, "EmoVAD_glob_a_stdev_uniq": 0.0,
-        "EmoVAD_glob_d_mean_uniq": 0.0, "EmoVAD_glob_d_stdev_uniq": 0.0
+        "EmoVAD_glob_d_mean_uniq": 0.0, "EmoVAD_glob_d_stdev_uniq": 0.0,
+
+        "EmoVAD_v_mean_mean": 0.0, "EmoVAD_v_mean_stdev": 0.0,
+        "EmoVAD_v_std_mean": 0.0, "EmoVAD_v_stdev_stdev": 0.0,
+        "EmoVAD_v_uniq_mean_mean": 0.0, "EmoVAD_v_uniq_mean_stdev": 0.0,
+        "EmoVAD_v_uniq_std_mean": 0.0, "EmoVAD_v_uniq_stdev_stdev": 0.0,
+
+        "EmoVAD_a_mean_mean": 0.0, "EmoVAD_a_mean_stdev": 0.0,
+        "EmoVAD_a_std_mean": 0.0, "EmoVAD_a_stdev_stdev": 0.0,
+        "EmoVAD_a_uniq_mean_mean": 0.0, "EmoVAD_a_uniq_mean_stdev": 0.0,
+        "EmoVAD_a_uniq_std_mean": 0.0, "EmoVAD_a_uniq_stdev_stdev": 0.0,
+
+        "EmoVAD_d_mean_mean": 0.0, "EmoVAD_d_mean_stdev": 0.0,
+        "EmoVAD_d_std_mean": 0.0, "EmoVAD_d_stdev_stdev": 0.0,
+        "EmoVAD_d_uniq_mean_mean": 0.0, "EmoVAD_d_uniq_mean_stdev": 0.0,
+        "EmoVAD_d_uniq_std_mean": 0.0, "EmoVAD_d_uniq_stdev_stdev": 0.0,
+
     }
     
     def __init__(self, wordlists = WordLists(), comment_path = "") -> None:
@@ -55,5 +72,5 @@ class FeatureExtractor:
 
  
 if __name__ == "__main__":
-    fe = FeatureExtractor(comment_path="/mnt/g/new_data/subset_deezer_test")
+    fe = FeatureExtractor(comment_path="/mnt/g/new_data/test_remove_EOF")
     fe.main()

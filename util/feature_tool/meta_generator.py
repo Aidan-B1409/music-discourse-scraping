@@ -82,4 +82,5 @@ class MetaGenerator:
             self.features["comment_length_mean"] = mean(word_count)
         if len(word_count) >= 2:
             self.features["comment_length_stdev"] = stdev(word_count)
+
         
