@@ -1,0 +1,32 @@
+{This has NO ramification on the code and was just used for planning features out}
+
+Metadata{ 
+    song_id, artist_name, song_title, n_comments, n_words, n_words_uniq
+}
+EmoVAD{
+    glob{
+        all_words{
+            EmoVAD_glob_valence{
+                EmoVAD_glob_valence_mean, EmoVAD_glob_valence_stdev
+            }
+            EmoVAD_glob_arousal{
+                EmoVAD_glob_arousal_mean, EmoVAD_glob_arousal_stdev
+            }
+            EmoVAD_glob_dominance{
+                EmoVAD_glob_dominance_mean, EmoVAD_glob_dominaince_stdev
+            }
+        }
+        unique_words{
+            EmoVAD_glob_valence{
+                EmoVAD_glob_valence_uniq_mean, EmoVAD_glob_valence_uniq_stdev
+            }
+            EmoVAD_glob_arousal{
+                EmoVAD_glob_arousal_uniq_mean, EmoVAD_glob_arousal_uniq_stdev
+            }
+            EmoVAD_glob_dominance{
+                EmoVAD_glob_dominance_uniq_mean, EmoVAD_glob_dominaince_uniq_stdev
+            }
+        }
+    }
+    individual{}
+}

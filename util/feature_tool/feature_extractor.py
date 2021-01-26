@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import nltk
+import functools
 from os import walk
 from datetime import datetime
 from nltk.stem import WordNetLemmatizer 
@@ -38,20 +39,45 @@ class FeatureExtractor:
                 #TODO - Need to skip empty csvs - but provide some metadata
                 csv.writerow(self.generate_features(df))
 
-    def clean_and_split_comments(self, comment_df):
+
+    # Generate song level features
+    def generate_features(self, df) -> list:
+        features = []
+        #Metadata
+        features.append(str(self.song_id(df)))
+        #Split the song name, where list[0] = artist name, list[1] = song name
+        artist_and_song_name = self.song_name(df)
+        features.append(artist_and_song_name[0])
+        features.append(artist_and_song_name[1])        
+        features.append(self.n_comments(df))
+
+        self.append_emovad_features(features, df)
+        return features
+
+    def append_emovad_features(self, features, song_df) -> None:
+        emovad = self.wordlists.load_EmoVAD()
+        glob_features = self.glob_features(emovad, song_df)
+        for feature in glob_features:
+            features.append(feature)
+
+    #for song-level feature generation
+    #take all words in the song file, return a dict of the count of each word occurance. '
+    #TODO - change me if using this pipeline for n-grams
+    def glob_comments(self, comment_df):
         # extract comments and join as one big string
         comment_df['Comment Body'] = comment_df['Comment Body'].astype(str)
-        comment = (comment_df.groupby(['Query Index'])['Comment Body'].apply(lambda x: ','.join(x)).reset_index())['Comment Body'][0]   
+        # Drop End Of File
+        # TODO - Fix comment puller so it doesn't add this damn End Of File string
+        # This is what happens when you ask freshmen to do coding. 
+        for word in comment_df['Comment Body']:
+            re.sub("End Of File", "", word)
+
+        comment_glob = (comment_df.groupby(['Query Index'])['Comment Body'].apply(lambda x: ','.join(x)).reset_index())['Comment Body'][0]   
+    
+        comment_glob = self.clean_string(comment_glob)
         
-        # clean the text
-        comment = re.sub('<.*?>', '', comment)    # remove HTML tags
-        comment = re.sub(r'[^\w\s\']', ' ', comment) # remove punc./non-English
-        comment = re.sub(r'\d+','',comment)       # remove numbers
-        comment = comment.lower()                 # lower case
-        
-        # tokenize, lemmatize, and remove stopwords
-        word_list = nltk.word_tokenize(comment)  
-        word_list = [self.lemmatizer.lemmatize(w,'v') for w in word_list]    
+        # tokenize and remove stopwords
+        word_list = nltk.word_tokenize(comment_glob)  
         word_list = [word for word in word_list if word not in self.stop_words]
         
         word_dict = {}
@@ -64,43 +90,69 @@ class FeatureExtractor:
         
         return word_df, word_list, word_dict
 
-    # Generate song level features
-    def generate_features(self, df) -> list:
+    def clean_string(self, comment_glob):
+        # clean the text
+        comment_glob = re.sub('<.*?>', '', comment_glob)    # remove HTML tags
+        comment_glob = re.sub(r'[^\w\s\']', ' ', comment_glob) # remove punc./non-English
+        comment_glob = re.sub(r'\d+','',comment_glob)       # remove numbers
+        comment_glob = comment_glob.lower()                 # lower case
+        return comment_glob
+
+    #The sum of all matching words from a given wordlist. 
+    def sum_words(self, semantic_df):
+        return semantic_df['Count'].sum()
+
+    # Find the features of the word glob for a specific song 
+    def glob_features(self, emovad_df, song_df) -> list:
         features = []
-        #Metadata
-        features.append(str(self.song_id(df)))
-        features.append(self.song_name(df))        
-        features.append(self.n_comments(df))
-        #This is where the fun begins! 
-        word_df, word_list, word_dict = self.clean_and_split_comments(df)
-        self.append_emovad_features(features, word_df)
+        words_df, words_list, words_dict = self.glob_comments(song_df)
+        semantic_word_df = pd.merge(words_df, emovad_df, on='Word')
+        #n_words_uniq - only do once!
+        if(len(words_df) == 2):
+            print(words_df)
+
+        features.append(len(words_df))
+        #EmoVAD_glob_sum - TODO fix off by one error
+        features.append(len(words_df))
+        semantic_word_df['V_Total'] = semantic_word_df['Count'] * emovad_df['Valence']
+        semantic_word_df['A_Total'] = semantic_word_df['Count'] * emovad_df['Arousal']
+        semantic_word_df['D_Total'] = semantic_word_df['Count'] * emovad_df['Dominance']
+        #VAD means including duplicates
+        features.append(semantic_word_df['V_Total'].mean())
+        features.append(semantic_word_df['V_Total'].std())
+        features.append(semantic_word_df['A_Total'].mean())
+        features.append(semantic_word_df['A_Total'].std())
+        features.append(semantic_word_df['D_Total'].mean())
+        features.append(semantic_word_df['D_Total'].std())
+
+        #VAD means on unique words only
+        features.append(semantic_word_df['Valence'].mean())
+        features.append(semantic_word_df['Valence'].std())
+        features.append(semantic_word_df['Arousal'].mean())
+        features.append(semantic_word_df['Arousal'].std())
+        features.append(semantic_word_df['Dominance'].mean())
+        features.append(semantic_word_df['Dominance'].std())
+
         return features
+
 
     #I want this as an int unlike the other features so that I can use it in following calculations. 
     def n_comments(self, df) -> int:
-        #We subtract one from the length because the last row is just metadata, not comments. 
-        return len(df) - 1
+        #TODO - Get each row that has a valid value in comment body
+
 
     def song_id(self, df) -> str:
         return str(df.iloc[0]['Song ID'])
 
-    def song_name(self, df) -> str:
+    def song_name(self, df) -> list:
         query = str(df.iloc[0]['Query'])
-        songname = re.sub(r"title:", "", query)
-        songname = re.sub(r'"', "", songname)
-        return songname
+        artist_and_song_name = query.split('" "')
+        for i in range(len(artist_and_song_name)):
+            artist_and_song_name[i] = re.sub(r"title:", "", artist_and_song_name[i])
+            artist_and_song_name[i] = re.sub(r'"', "", artist_and_song_name[i])
+        return artist_and_song_name
 
-    def append_emovad_features(self, features, word_df) -> None:
-        emovad = self.wordlists.load_EmoVAD()
-        features.append(str(self.sum_words(word_df, emovad)))
-
-    #The sum of all matching words from a given wordlist. 
-    def sum_words(self, word_df, wordlist_df):
-        semwords_from_comments = pd.merge(word_df, wordlist_df, on='Word')
-        return semwords_from_comments['Count'].sum()
-
-
+ 
 if __name__ == "__main__":
     fe = FeatureExtractor(comment_path="/mnt/g/new_data/subset_deezer_test")
     fe.main()
-
