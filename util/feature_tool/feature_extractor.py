@@ -72,5 +72,5 @@ class FeatureExtractor:
 
  
 if __name__ == "__main__":
-    fe = FeatureExtractor(comment_path="/mnt/g/new_data/test_remove_EOF")
+    fe = FeatureExtractor(comment_path="/mnt/g/new_data/subset_deezer_test")
     fe.main()

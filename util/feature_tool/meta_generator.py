@@ -2,8 +2,6 @@ import re
 from statistics import mean
 from statistics import stdev
 
-from nltk.corpus.reader.util import read_wordpunct_block
-
 class MetaGenerator:
     features = {
         "Song_ID": "",
@@ -44,7 +42,7 @@ class MetaGenerator:
         empty_glob_indices = self.glob_df[ self.glob_df['Word'] == "nan"].index
         self.glob_df.drop(empty_glob_indices, inplace=True)
 
-    def song_id(self, song_df) -> str:
+    def song_id(self, song_df) -> str: 
         return str(song_df.iloc[0]['Song ID'])
     
     def existing_valence(self, song_df) -> str:
@@ -62,7 +60,7 @@ class MetaGenerator:
         return artist_and_song_name
 
     # Only useful on the glob dataframe
-    # TODO - Handle off-by-one
+    # IMPORTANT - this counts after stopwords were removed
     def n_words(self, glob_df):
         return glob_df['Count'].sum()
 
@@ -70,10 +68,10 @@ class MetaGenerator:
     def n_words_uniq(self, glob_df):
         return len(glob_df)
 
-    # It'd be cool to make this a lambda at some point
     def n_comments(self, song_df):
         return len(song_df)
 
+    # Unfiltered comment length
     def comment_len(self, song_df):
         word_count = [len(str(x).split()) for x in song_df['Comment Body'].tolist()]
         self.features["comment_length_mean"] = 0
