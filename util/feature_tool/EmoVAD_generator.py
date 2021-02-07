@@ -1,3 +1,4 @@
+from wordlists import WordLists
 import pandas as pd
 from string_cleaner import make_word_df
 from glob_maker import make_unsquished_glob
@@ -15,6 +16,15 @@ class EmoVADGenerator:
         "EmoVAD_glob_a_mean_uniq": 0.0, "EmoVAD_glob_a_stdev_uniq": 0.0,
         "EmoVAD_glob_d_mean_uniq": 0.0, "EmoVAD_glob_d_stdev_uniq": 0.0,
 
+        "EmoVAD_glob_max_word_v": 0.0, "EmoVAD_glob_max_word_a": 0.0,
+        "EmoVAD_glob_max_word_d": 0.0, 
+        
+        "EmoVAD_glob_min_word_v": 0.0,
+        "EmoVAD_glob_min_word_a": 0.0, "EmoVAD_glob_min_word_d": 0.0,
+
+        "EmoVAD_glob_most_word_v": 0.0, "EmoVAD_glob_most_word_a": 0.0,
+        "EmoVAD_glob_most_word_d": 0.0, "EmoVAD_glob_most_word_count": 0.0,
+
         "EmoVAD_v_mean_mean": 0.0, "EmoVAD_v_mean_stdev": 0.0,
         "EmoVAD_v_std_mean": 0.0, "EmoVAD_v_stdev_stdev": 0.0,
         "EmoVAD_v_uniq_mean_mean": 0.0, "EmoVAD_v_uniq_mean_stdev": 0.0,
@@ -30,12 +40,25 @@ class EmoVADGenerator:
         "EmoVAD_d_uniq_mean_mean": 0.0, "EmoVAD_d_uniq_mean_stdev": 0.0,
         "EmoVAD_d_uniq_std_mean": 0.0, "EmoVAD_d_uniq_stdev_stdev": 0.0,
 
+        "EmoVAD_max_word_v_mean": 0.0, "EmoVAD_max_word_v_std": 0.0,
+        "EmoVAD_max_word_a_mean": 0.0, "EmoVAD_max_word_a_std": 0.0,
+        "EmoVAD_max_word_d_mean": 0.0, "EmoVAD_max_word_d_std": 0.0,
+        
+        "EmoVAD_min_word_v_mean": 0.0, "EmoVAD_min_word_v_std": 0.0,
+        "EmoVAD_min_word_a_mean": 0.0, "EmoVAD_min_word_a_std": 0.0,
+        "EmoVAD_min_word_d_mean": 0.0, "EmoVAD_min_word_d_std": 0.0,
+
+        "EmoVAD_most_word_v_mean": 0.0, "EmoVAD_most_word_v_std": 0.0,
+        "EmoVAD_most_word_a_mean": 0.0, "EmoVAD_most_word_a_std": 0.0,
+        "EmoVAD_most_word_d_mean": 0.0, "EmoVAD_most_word_d_std": 0.0,
+        "EmoVAD_most_word_count_mean": 0.0, "EmoVAD_most_word_count_std": 0.0,
     }
 
-    def __init__(self, song_df, glob_df, emovad_df) -> None:
+    def __init__(self, song_df, glob_df, wordlists) -> None:
         self.song_df = song_df
         self.glob_df = glob_df
-        self.emovad_df = emovad_df
+        self.emovad_df = wordlists.load_EmoVAD()
+        self.emolex_df = wordlists.load_EmoLEX()
 
     def get_features(self) -> dict:
         self.glob_features()
@@ -82,7 +105,37 @@ class EmoVADGenerator:
             self.write_mean_std("EmoVAD_glob_a_mean_uniq", "EmoVAD_glob_a_stdev_uniq", self.get_mean_std(uniq_semantic_word_df['Arousal'], len(uniq_semantic_word_df['Word'])))
             self.write_mean_std("EmoVAD_glob_d_mean_uniq", "EmoVAD_glob_d_stdev_uniq", self.get_mean_std(uniq_semantic_word_df['Dominance'], len(uniq_semantic_word_df['Word'])))
 
+            if(len(uniq_semantic_word_df) > 0):
+                self.write_minmaxmost_features(uniq_semantic_word_df)
 
+    def get_minmaxmost_words(self, semantic_word_df) -> dict:
+        return {
+            "highest_valence_word": semantic_word_df['Valence'].idxmax(),
+            "highest_arousal_word": semantic_word_df['Arousal'].idxmax(),
+            "highest_dominance_word": semantic_word_df['Dominance'].idxmax(),
+            "lowest_valence_word": semantic_word_df['Valence'].idxmin(), 
+            "lowest_arousal_word": semantic_word_df['Arousal'].idxmin(), 
+            "lowest_dominance_word": semantic_word_df['Dominance'].idxmin(),
+            "most_occuring_word": semantic_word_df['Count'].idxmax()
+        }
+
+    def write_minmaxmost_features(self, semantic_word_df):
+            words = self.get_minmaxmost_words(semantic_word_df)
+            
+            self.features["EmoVAD_glob_max_word_v"] = semantic_word_df.at[words['highest_valence_word'], "Valence"]
+            self.features["EmoVAD_glob_max_word_a"] = semantic_word_df.at[words['highest_arousal_word'], "Arousal"]
+            self.features["EmoVAD_glob_max_word_d"] = semantic_word_df.at[words['highest_dominance_word'], "Dominance"]
+
+            self.features["EmoVAD_glob_min_word_v"] = semantic_word_df.at[words['lowest_valence_word'], "Valence"]
+            self.features["EmoVAD_glob_min_word_a"] = semantic_word_df.at[words['lowest_arousal_word'], "Arousal"]
+            self.features["EmoVAD_glob_min_word_d"] = semantic_word_df.at[words['lowest_dominance_word'], "Dominance"]
+            
+            self.features["EmoVAD_glob_most_word_v"] = semantic_word_df.at[words['most_occuring_word'], "Valence"]
+            self.features["EmoVAD_glob_most_word_a"] = semantic_word_df.at[words['most_occuring_word'], "Arousal"]
+            self.features["EmoVAD_glob_most_word_d"] = semantic_word_df.at[words['most_occuring_word'], "Dominance"]
+            self.features["EmoVAD_glob_most_word_count"] = semantic_word_df.at[words['most_occuring_word'], "Count"]
+
+        
     def make_glob_intersection(self, glob_df, wordlist_df) -> pd.DataFrame:
         semantic_word_df = pd.merge(glob_df, wordlist_df, on='Word')
 
@@ -97,12 +150,12 @@ class EmoVADGenerator:
 
 
     # For each comment in the song dataframe, clean the comment string, 
-    # TODO - completely rebuild function for nan safety
-
     def independent_features(self) -> None: 
             columns = ['valence_means', 'valence_stds', 'valence_uniq_means', 'valence_uniq_stds',
                 'arousal_means', 'arousal_stds', 'arousal_uniq_means', 'arousal_uniq_stds',
-                'dominance_means', 'dominance_stds', 'dominance_uniq_means', 'dominance_uniq_stds']
+                'dominance_means', 'dominance_stds', 'dominance_uniq_means', 'dominance_uniq_stds',
+                'max_word_v', "max_word_a", "max_word_d", "min_word_v", "min_word_a", "min_word_d",
+                "most_word_v", "most_word_a", "most_word_d", "most_word_count"]
             
             feature_count_df = pd.DataFrame(columns=columns)
             for i, row in enumerate(self.song_df['Comment Body']):
@@ -142,6 +195,23 @@ class EmoVADGenerator:
                     feature_count_df.at[i,'dominance_uniq_means'] = d_data_uniq[0]
                     feature_count_df.at[i,'dominance_uniq_stds'] = d_data_uniq[1]
 
+                    if(len(semantic_uniq_word_df) > 0):
+                        words = self.get_minmaxmost_words(semantic_uniq_word_df)
+                        feature_count_df.at[i, 'max_word_v'] = semantic_uniq_word_df.at[words['highest_valence_word'], 'Valence']
+                        feature_count_df.at[i, 'max_word_a'] = semantic_uniq_word_df.at[words['highest_arousal_word'], 'Arousal']
+                        feature_count_df.at[i, 'max_word_d'] = semantic_uniq_word_df.at[words['highest_dominance_word'], 'Dominance']
+
+                        feature_count_df.at[i, 'min_word_v'] = semantic_uniq_word_df.at[words['lowest_valence_word'], 'Valence']
+                        feature_count_df.at[i, 'min_word_a'] = semantic_uniq_word_df.at[words['lowest_arousal_word'], 'Arousal']
+                        feature_count_df.at[i, 'min_word_d'] = semantic_uniq_word_df.at[words['lowest_dominance_word'], 'Dominance']
+
+                        feature_count_df.at[i, 'most_word_v'] = semantic_uniq_word_df.at[words['most_occuring_word'], 'Valence']
+                        feature_count_df.at[i, 'most_word_a'] = semantic_uniq_word_df.at[words['most_occuring_word'], 'Arousal']
+                        feature_count_df.at[i, 'most_word_d'] = semantic_uniq_word_df.at[words['most_occuring_word'], 'Dominance']
+                        feature_count_df.at[i, 'most_word_count'] = semantic_uniq_word_df.at[words['most_occuring_word'], 'Count']
+
+                    feature_count_df.iloc[i:].fillna(value=0, inplace=True)
+
             self.write_mean_std("EmoVAD_v_mean_mean", "EmoVAD_v_mean_stdev", self.get_mean_std(feature_count_df['valence_means'], len(feature_count_df['valence_means'])))
             self.write_mean_std("EmoVAD_v_std_mean", "EmoVAD_v_stdev_stdev", self.get_mean_std(feature_count_df['valence_stds'], len(feature_count_df['valence_stds'])))
             self.write_mean_std("EmoVAD_v_uniq_mean_mean", "EmoVAD_v_uniq_mean_stdev", self.get_mean_std(feature_count_df['valence_uniq_means'], len(feature_count_df['valence_uniq_means'])))
@@ -156,3 +226,16 @@ class EmoVADGenerator:
             self.write_mean_std("EmoVAD_d_std_mean", "EmoVAD_d_stdev_stdev", self.get_mean_std(feature_count_df['dominance_stds'], len(feature_count_df['dominance_stds'])))
             self.write_mean_std("EmoVAD_d_uniq_mean_mean", "EmoVAD_d_uniq_mean_stdev", self.get_mean_std(feature_count_df['dominance_uniq_means'], len(feature_count_df['dominance_uniq_means'])))
             self.write_mean_std("EmoVAD_d_uniq_std_mean", "EmoVAD_d_uniq_stdev_stdev", self.get_mean_std(feature_count_df['dominance_uniq_stds'], len(feature_count_df['dominance_uniq_stds'])))
+
+            self.write_mean_std("EmoVAD_max_word_v_mean", "EmoVAD_max_word_v_std", self.get_mean_std(feature_count_df['max_word_v'], len(feature_count_df['max_word_v'])))
+            self.write_mean_std("EmoVAD_max_word_a_mean", "EmoVAD_max_word_a_std", self.get_mean_std(feature_count_df['max_word_a'], len(feature_count_df['max_word_a'])))
+            self.write_mean_std("EmoVAD_max_word_d_mean", "EmoVAD_max_word_d_std", self.get_mean_std(feature_count_df['max_word_d'], len(feature_count_df['max_word_d'])))
+
+            self.write_mean_std("EmoVAD_min_word_v_mean", "EmoVAD_min_word_v_std", self.get_mean_std(feature_count_df['min_word_v'], len(feature_count_df['min_word_v'])))
+            self.write_mean_std("EmoVAD_min_word_a_mean", "EmoVAD_min_word_a_std", self.get_mean_std(feature_count_df['min_word_a'], len(feature_count_df['min_word_a'])))
+            self.write_mean_std("EmoVAD_min_word_d_mean", "EmoVAD_min_word_d_std", self.get_mean_std(feature_count_df['min_word_d'], len(feature_count_df['min_word_d'])))
+
+            self.write_mean_std("EmoVAD_most_word_v_mean", "EmoVAD_most_word_v_std", self.get_mean_std(feature_count_df['most_word_v'], len(feature_count_df['most_word_v'])))
+            self.write_mean_std("EmoVAD_most_word_a_mean", "EmoVAD_most_word_a_std", self.get_mean_std(feature_count_df['most_word_a'], len(feature_count_df['most_word_a'])))
+            self.write_mean_std("EmoVAD_most_word_d_mean", "EmoVAD_most_word_d_std", self.get_mean_std(feature_count_df['most_word_d'], len(feature_count_df['most_word_d'])))
+            self.write_mean_std("EmoVAD_most_word_count_mean", "EmoVAD_most_word_count_std", self.get_mean_std(feature_count_df['most_word_count'], len(feature_count_df['most_word_count'])))

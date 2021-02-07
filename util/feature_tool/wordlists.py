@@ -27,6 +27,9 @@ class WordLists():
     def load_EmoVAD(self) -> pd.DataFrame:
         return pd.read_csv(self.get_path("EmoVAD"), names=['Word','Valence','Arousal','Dominance'], skiprows=1,  sep='\t')
 
+    def load_EmoLEX(self) -> pd.DataFrame:
+        return pd.read_csv(self.get_path("EmoLex"), names=['Word','Emotion','Association'], skiprows=1, sep='\t')
+
 
 
 
