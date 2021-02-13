@@ -3,10 +3,8 @@ import csv
 from os import walk
 from datetime import datetime
 
-from wordlists import WordLists
-from glob_maker import make_glob
-from meta_generator import MetaGenerator
-from EmoVAD_generator import EmoVADGenerator
+from EmoVAD_wlist import EmoVAD_wlist
+from FeatureGenerator import FeatureGenerator
 from analysis import analyze_features
 
 
@@ -15,7 +13,7 @@ from analysis import analyze_features
 # wordlist_df -- The dataframe holding the semantic wordlist
 # word_df -- A wordlist which holds each unique comment in the glob/comment and its # of occurances 
 # glob -- The concatanation 
-class FeatureExtractor:
+class App:
 
     m_features = {
         "Song_ID": "",
@@ -70,8 +68,7 @@ class FeatureExtractor:
 
     }
     
-    def __init__(self, wordlists = WordLists(), comment_path = "") -> None:
-        self.wordlists = wordlists
+    def __init__(self,comment_path = "") -> None:
         self.comment_path = comment_path
 
     def song_csv_generator(self):
@@ -87,18 +84,15 @@ class FeatureExtractor:
             csvwriter = csv.DictWriter(csvfile, self.m_features.keys())
             csvwriter.writeheader()
             for song_df in self.song_csv_generator():
-                features = {}
-                glob_df = make_glob(song_df)
-                features = {**features, **MetaGenerator(song_df, glob_df).get_features()}
-                features = {**features, **EmoVADGenerator(song_df, glob_df, self.wordlists).get_features()}
+                features = FeatureGenerator(song_df).get_features()
                 csvwriter.writerow(features)
 
         # after we finish generating all our features - do some simple analysis
         analysis_csv_name = "feature_analysis" + timestamp + ".csv"
         analyze_features(data_csv_name, analysis_csv_name, self.m_features)
-            
+           
 
 
 if __name__ == "__main__":
-    fe = FeatureExtractor(comment_path="/mnt/g/new_data/subset_deezer_test")
+    fe = App(comment_path="/mnt/g/new_data/subset_deezer_test")
     fe.main()
