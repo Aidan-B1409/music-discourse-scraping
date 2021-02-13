@@ -210,7 +210,8 @@ class EmoVADGenerator:
                         feature_count_df.at[i, 'most_word_d'] = semantic_uniq_word_df.at[words['most_occuring_word'], 'Dominance']
                         feature_count_df.at[i, 'most_word_count'] = semantic_uniq_word_df.at[words['most_occuring_word'], 'Count']
 
-                    feature_count_df.iloc[i:].fillna(value=0, inplace=True)
+                    # TODO - fix the inevitable STDEV error
+                    # feature_count_df.iloc[i:].fillna(value=0, inplace=True)
 
             self.write_mean_std("EmoVAD_v_mean_mean", "EmoVAD_v_mean_stdev", self.get_mean_std(feature_count_df['valence_means'], len(feature_count_df['valence_means'])))
             self.write_mean_std("EmoVAD_v_std_mean", "EmoVAD_v_stdev_stdev", self.get_mean_std(feature_count_df['valence_stds'], len(feature_count_df['valence_stds'])))
