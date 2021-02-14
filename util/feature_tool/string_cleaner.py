@@ -2,11 +2,15 @@ import nltk
 import re
 import pandas as pd
 from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer 
 
+lemmatizer = WordNetLemmatizer()
 nltk.download('stopwords')
 stop_words = stopwords.words('english')  
 nltk.download('punkt')
 nltk.download('wordnet')
+
+LEMMATIZE = True
 
 # Accepts raw megastring (both for glob and for raw use with individual comments)
 # Returns list of tokenized words
@@ -17,7 +21,9 @@ def clean_comment(comment) -> list:
     comment = re.sub(r'\d+','',comment)       # remove numbers
     comment = comment.lower()                 # lower case
     # tokenize and remove stopwords
-    word_list = nltk.word_tokenize(comment)  
+    word_list = nltk.word_tokenize(comment)
+    if(LEMMATIZE):
+        word_list = [lemmatizer.lemmatize(w,'v') for w in word_list]    
     word_list = [word for word in word_list if word not in stop_words]
     return word_list
 
