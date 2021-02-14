@@ -15,6 +15,10 @@ from analysis import analyze_features
 # glob -- The concatanation 
 class App:
 
+    # NOTE - If you're getting "dict contains fields not in fieldnames" errors, it is probably because 
+    # you added features/keys within one of the wlist classes without also adding it here
+    # I know it's a gross solution but this is the only way to generate the header and lazy load the features. 
+    # In the future - please replace this key system with a JSON. 
     m_features = {
         "Song_ID": "",
         "Song_Artist": "", "Song_Name": "",
@@ -28,6 +32,10 @@ class App:
         "EmoVAD_glob_v_mean_uniq": 0.0, "EmoVAD_glob_v_stdev_uniq": 0.0,
         "EmoVAD_glob_a_mean_uniq": 0.0, "EmoVAD_glob_a_stdev_uniq": 0.0,
         "EmoVAD_glob_d_mean_uniq": 0.0, "EmoVAD_glob_d_stdev_uniq": 0.0,
+
+        "EmoVAD_glob_v_sqmean": 0.0, "EmoVAD_glob_a_sqmean": 0.0, 
+        "EmoVAD_glob_d_sqmean": 0.0, "EmoVAD_glob_v_sqmean_uniq": 0.0, 
+        "EmoVAD_glob_a_sqmean_uniq": 0.0, "EmoVAD_glob_d_sqmean_uniq": 0.0, 
 
         "EmoVAD_glob_max_word_v": 0.0, "EmoVAD_glob_max_word_a": 0.0,
         "EmoVAD_glob_max_word_d": 0.0, 
@@ -56,6 +64,10 @@ class App:
         "EmoVAD_max_word_v_mean": 0.0, "EmoVAD_max_word_v_std": 0.0,
         "EmoVAD_max_word_a_mean": 0.0, "EmoVAD_max_word_a_std": 0.0,
         "EmoVAD_max_word_d_mean": 0.0, "EmoVAD_max_word_d_std": 0.0,
+
+        "EmoVAD_max_word_v_sqmean": 0.0, "EmoVAD_max_word_v_sqstd": 0.0,
+        "EmoVAD_max_word_a_sqmean": 0.0, "EmoVAD_max_word_a_sqstd": 0.0,
+        "EmoVAD_max_word_d_sqmean": 0.0, "EmoVAD_max_word_d_sqstd": 0.0,
         
         "EmoVAD_min_word_v_mean": 0.0, "EmoVAD_min_word_v_std": 0.0,
         "EmoVAD_min_word_a_mean": 0.0, "EmoVAD_min_word_a_std": 0.0,
@@ -65,7 +77,6 @@ class App:
         "EmoVAD_most_word_a_mean": 0.0, "EmoVAD_most_word_a_std": 0.0,
         "EmoVAD_most_word_d_mean": 0.0, "EmoVAD_most_word_d_std": 0.0,
         "EmoVAD_most_word_count_mean": 0.0, "EmoVAD_most_word_count_std": 0.0,
-
     }
     
     def __init__(self,comment_path = "") -> None:

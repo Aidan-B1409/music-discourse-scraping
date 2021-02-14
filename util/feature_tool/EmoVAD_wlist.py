@@ -1,4 +1,5 @@
 import pandas as pd 
+import numpy as np
 
 from string_cleaner import clean_comment
 from string_cleaner import make_word_df
@@ -26,6 +27,10 @@ class EmoVAD_wlist:
         "EmoVAD_glob_v_mean_uniq": 0.0, "EmoVAD_glob_v_stdev_uniq": 0.0,
         "EmoVAD_glob_a_mean_uniq": 0.0, "EmoVAD_glob_a_stdev_uniq": 0.0,
         "EmoVAD_glob_d_mean_uniq": 0.0, "EmoVAD_glob_d_stdev_uniq": 0.0,
+
+        "EmoVAD_glob_v_sqmean": 0.0, "EmoVAD_glob_a_sqmean": 0.0, 
+        "EmoVAD_glob_d_sqmean": 0.0, "EmoVAD_glob_v_sqmean_uniq": 0.0, 
+        "EmoVAD_glob_a_sqmean_uniq": 0.0, "EmoVAD_glob_d_sqmean_uniq": 0.0, 
 
         "EmoVAD_glob_max_word_v": 0.0, "EmoVAD_glob_max_word_a": 0.0,
         "EmoVAD_glob_max_word_d": 0.0, 
@@ -56,6 +61,10 @@ class EmoVAD_wlist:
         "EmoVAD_max_word_v_mean": 0.0, "EmoVAD_max_word_v_std": 0.0,
         "EmoVAD_max_word_a_mean": 0.0, "EmoVAD_max_word_a_std": 0.0,
         "EmoVAD_max_word_d_mean": 0.0, "EmoVAD_max_word_d_std": 0.0,
+
+        "EmoVAD_max_word_v_sqmean": 0.0, "EmoVAD_max_word_v_sqstd": 0.0,
+        "EmoVAD_max_word_a_sqmean": 0.0, "EmoVAD_max_word_a_sqstd": 0.0,
+        "EmoVAD_max_word_d_sqmean": 0.0, "EmoVAD_max_word_d_sqstd": 0.0,
         
         "EmoVAD_min_word_v_mean": 0.0, "EmoVAD_min_word_v_std": 0.0,
         "EmoVAD_min_word_a_mean": 0.0, "EmoVAD_min_word_a_std": 0.0,
@@ -68,7 +77,6 @@ class EmoVAD_wlist:
         }
 
     def wordlevel_analysis(self, song_df, glob_df) -> dict:
-        # Safety check! Dump the global dict
 
         if(len(song_df) > 0):
             allword_semantic_word_df = self._song_df_intersection(song_df, self.emovad_df)
@@ -78,6 +86,12 @@ class EmoVAD_wlist:
             self._write_mean_std(self.features_wordlevel, "EmoVAD_glob_a_mean", "EmoVAD_glob_a_stdev", self._get_mean_std(allword_semantic_word_df['Arousal'], len(allword_semantic_word_df['Word'])))
             self._write_mean_std(self.features_wordlevel, "EmoVAD_glob_d_mean", "EmoVAD_glob_d_stdev", self._get_mean_std(allword_semantic_word_df['Dominance'], len(allword_semantic_word_df['Word'])))
 
+            self.features_wordlevel['EmoVAD_glob_v_sqmean'] = np.square(allword_semantic_word_df['Valence']).mean()
+            self.features_wordlevel['EmoVAD_glob_a_sqmean'] = np.square(allword_semantic_word_df['Arousal']).mean()
+            self.features_wordlevel['EmoVAD_glob_d_sqmean'] = np.square(allword_semantic_word_df['Dominance']).mean()
+            self.features_wordlevel['EmoVAD_glob_v_sqmean_uniq'] = np.square(allword_semantic_word_df['Valence']).mean()
+            self.features_wordlevel['EmoVAD_glob_a_sqmean_uniq'] = np.square(allword_semantic_word_df['Arousal']).mean()
+            self.features_wordlevel['EmoVAD_glob_d_sqmean_uniq'] = np.square(allword_semantic_word_df['Dominance']).mean()
             #VAD means on unique words only
             self._write_mean_std(self.features_wordlevel, "EmoVAD_glob_v_mean_uniq", "EmoVAD_glob_v_stdev_uniq", self._get_mean_std(uniq_semantic_word_df['Valence'], len(uniq_semantic_word_df['Word'])))
             self._write_mean_std(self.features_wordlevel, "EmoVAD_glob_a_mean_uniq", "EmoVAD_glob_a_stdev_uniq", self._get_mean_std(uniq_semantic_word_df['Arousal'], len(uniq_semantic_word_df['Word'])))
@@ -158,6 +172,10 @@ class EmoVAD_wlist:
         self._write_mean_std(self.features_commentlevel, "EmoVAD_max_word_v_mean", "EmoVAD_max_word_v_std", self._get_mean_std(self.comment_analysis_df['max_word_v'], len(self.comment_analysis_df['max_word_v'])))
         self._write_mean_std(self.features_commentlevel, "EmoVAD_max_word_a_mean", "EmoVAD_max_word_a_std", self._get_mean_std(self.comment_analysis_df['max_word_a'], len(self.comment_analysis_df['max_word_a'])))
         self._write_mean_std(self.features_commentlevel, "EmoVAD_max_word_d_mean", "EmoVAD_max_word_d_std", self._get_mean_std(self.comment_analysis_df['max_word_d'], len(self.comment_analysis_df['max_word_d'])))
+
+        self._write_mean_std(self.features_commentlevel, "EmoVAD_max_word_v_sqmean", "EmoVAD_max_word_v_sqstd", self._get_mean_std(np.square(self.comment_analysis_df['max_word_v']), len(self.comment_analysis_df['max_word_v'])))
+        self._write_mean_std(self.features_commentlevel, "EmoVAD_max_word_a_sqmean", "EmoVAD_max_word_a_sqstd", self._get_mean_std(np.square(self.comment_analysis_df['max_word_a']), len(self.comment_analysis_df['max_word_a'])))
+        self._write_mean_std(self.features_commentlevel, "EmoVAD_max_word_d_sqmean", "EmoVAD_max_word_d_sqstd", self._get_mean_std(np.square(self.comment_analysis_df['max_word_d']), len(self.comment_analysis_df['max_word_d'])))
 
         self._write_mean_std(self.features_commentlevel, "EmoVAD_min_word_v_mean", "EmoVAD_min_word_v_std", self._get_mean_std(self.comment_analysis_df['min_word_v'], len(self.comment_analysis_df['min_word_v'])))
         self._write_mean_std(self.features_commentlevel, "EmoVAD_min_word_a_mean", "EmoVAD_min_word_a_std", self._get_mean_std(self.comment_analysis_df['min_word_a'], len(self.comment_analysis_df['min_word_a'])))
