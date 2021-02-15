@@ -10,7 +10,9 @@ stop_words = stopwords.words('english')
 nltk.download('punkt')
 nltk.download('wordnet')
 
-LEMMATIZE = True
+# Flag to enable/disable lemmatization
+# Eventually make this a CLI option. 
+LEMMATIZE = False
 
 # Accepts raw megastring (both for glob and for raw use with individual comments)
 # Returns list of tokenized words

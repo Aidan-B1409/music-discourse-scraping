@@ -1,4 +1,5 @@
 from EmoVAD_wlist import EmoVAD_wlist
+from bsmvad_wlist import BSMVAD_wlist
 import pandas as pd
 from meta_generator import MetaGenerator
 from glob_maker import make_glob
@@ -24,10 +25,13 @@ class FeatureGenerator:
     def _build_wordlists(self) -> list:
         wlists = []
         wlists.append(EmoVAD_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoVAD']))
+        wlists.append(BSMVAD_wlist(getcwd() + '/wordlists/' + self.list_paths['ANEW_Extended']))
         return wlists
 
     def get_features(self) -> dict:
         features = {}
+        # Note that the metaGenerator also drops all blank rows after extracting static metadata, but BEFORE calculating n_comments, etc.
+        # Nasty side effect, but it's the best way to shoehorn that into the pipeline without getting inaccurate n_comment readings. 
         features.update(MetaGenerator(self.song_df, self.glob_df).get_features())
         for wlist in self.wordlists:
             features.update(wlist.wordlevel_analysis(self.song_df, self.glob_df))
@@ -35,6 +39,4 @@ class FeatureGenerator:
                 wlist.process_comment(i, row)
             features.update(wlist.analyze_comments())
         return features
-
-
 

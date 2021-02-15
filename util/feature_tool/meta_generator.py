@@ -23,7 +23,6 @@ class MetaGenerator:
         self.features["existing_valence"] = self.existing_valence(self.song_df)
         self.features["existing_arousal"] = self.existing_arousal(self.song_df)
 
-        # TODO - Nasty side effect here!!!
         self.drop_nan_rows()
       
         self.features["n_comments"] = self.n_comments(self.song_df)
