@@ -115,7 +115,7 @@ class MPQA_wlist:
             if(len(positive_words_uniq) > 0):
                 self.comment_analysis_df.at[index, 'most_freq_positive_word_means'] = self._getfreqmean(semantic_uniq_word_df, 'positive')
             if(len(negative_words_uniq) > 0):
-                self.comment_analysis_df.at[index, 'most_freq_positive_word_means'] = self._getfreqmean(semantic_uniq_word_df, 'negative')
+                self.comment_analysis_df.at[index, 'most_freq_negative_word_means'] = self._getfreqmean(semantic_uniq_word_df, 'negative')
             if len(positive_words) > 0 and len(negative_words) > 0:
                 self.comment_analysis_df.at[index, 'ratio_uniq'] = self._semratio(positive_words_uniq, negative_words_uniq)
 

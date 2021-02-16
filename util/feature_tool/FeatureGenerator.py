@@ -1,6 +1,7 @@
 from EmoVAD_wlist import EmoVAD_wlist
 from bsmvad_wlist import BSMVAD_wlist
 from mpqa_wlist import MPQA_wlist
+from emolex_wlist import EmoLex_wlist
 import pandas as pd
 from meta_generator import MetaGenerator
 from glob_maker import make_glob
@@ -28,6 +29,7 @@ class FeatureGenerator:
         wlists.append(EmoVAD_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoVAD']))
         wlists.append(BSMVAD_wlist(getcwd() + '/wordlists/' + self.list_paths['ANEW_Extended']))
         wlists.append(MPQA_wlist(getcwd() + '/wordlists/' + self.list_paths['MPQA']))
+        wlists.append(EmoLex_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoLex']))
         return wlists
 
     def get_features(self) -> dict:
