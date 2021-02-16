@@ -141,6 +141,22 @@ class App:
         "bsmVAD_most_word_a_mean": 0.0, "bsmVAD_most_word_a_std": 0.0,
         "bsmVAD_most_word_d_mean": 0.0, "bsmVAD_most_word_d_std": 0.0,
         "bsmVAD_most_word_count_mean": 0.0, "bsmVAD_most_word_count_std": 0.0,
+
+        'mpqa_glob_positive_mean': 0.0, 'mpqa_glob_negative_mean': 0.0,
+        'mpqa_glob_positive_mean_uniq': 0.0, 'mpqa_glob_negative_mean_uniq': 0.0,
+
+        'mpqa_positive_mostfreqword_mean': 0.0, 'mpqa_negative_mostfreqword_mean': 0.0,
+        'mpqa_glob_ratio': 0.0, 'mpqa_glob_ratio_uniq': 0.0,
+
+        'mpqa_positive_means_mean': 0.0, 'mpqa_positive_means_std': 0.0,
+        'mpqa_positive_means_uniq_mean': 0.0, 'mpqa_positive_means_uniq_std': 0.0,
+        'mpqa_negative_means_mean': 0.0, 'mpqa_negative_means_std': 0.0,
+        'mpqa_negative_means_uniq_mean': 0.0, 'mpqa_negative_means_uniq_std': 0.0,
+
+        'mpqa_mostfreq_positiveword_means_mean': 0.0, 'mpqa_mostfreq_positiveword_means_std': 0.0,
+        'mpqa_mostfreq_negativeword_means_mean': 0.0, 'mpqa_mostfreq_negativeword_means_std': 0.0,
+        'mpqa_ratio_mean': 0.0, 'mpqa_ratio_std': 0.0,
+        'mpqa_ratio_uniq_mean': 0.0, 'mpqa_ratio_uniq_std': 0.0
     }
     
     def __init__(self,comment_path = "") -> None:
@@ -186,6 +202,9 @@ class App:
         emolex_df = pd.read_csv(os.getcwd() + '/wordlists/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt',  names=['Word','Emotion','Association'], skiprows=1, sep='\t') 
         print("EmoVAD U EmoLEX: " + str(len(set(emovad_df['Word']) & set(emolex_df['Word']))))  
 
+        #open mpqa
+        mpqa_df = pd.read_csv(os.getcwd() + '/wordlists/MPQA_sentiment.csv',  names=['Word','Sentiment'], skiprows=0)
+        print("EmoVAD U MPQA" + str(len(set(emovad_df['Word']) & set(mpqa_df['Word']))))
 
 if __name__ == "__main__":
     fe = App(comment_path="/mnt/g/new_data/subset_deezer_test")

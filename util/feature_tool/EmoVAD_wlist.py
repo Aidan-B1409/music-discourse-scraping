@@ -129,7 +129,7 @@ class EmoVAD_wlist:
         semantic_words_df = pd.merge(words_df, self.emovad_df, on='Word')
 
         # If there are any words which match our VAD wordlist 
-        if len(unique_words_df) > 0:
+        if len(semantic_words_df) > 0:
 
             v_data = get_mean_std(semantic_words_df['Valence'], len(semantic_words_df['Word']))
             self.comment_analysis_df.at[index,'valence_means'] = v_data[0]
