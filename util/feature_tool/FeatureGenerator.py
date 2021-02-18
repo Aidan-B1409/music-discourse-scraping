@@ -1,3 +1,4 @@
+from emoaff_wlist import EmoAff_wlist
 from EmoVAD_wlist import EmoVAD_wlist
 from bsmvad_wlist import BSMVAD_wlist
 from mpqa_wlist import MPQA_wlist
@@ -30,6 +31,7 @@ class FeatureGenerator:
         wlists.append(BSMVAD_wlist(getcwd() + '/wordlists/' + self.list_paths['ANEW_Extended']))
         wlists.append(MPQA_wlist(getcwd() + '/wordlists/' + self.list_paths['MPQA']))
         wlists.append(EmoLex_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoLex']))
+        wlists.append(EmoAff_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoAff']))
         return wlists
 
     def get_features(self) -> dict:

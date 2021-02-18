@@ -9,6 +9,8 @@ from string_cleaner import make_word_df
 
 class EmoLex_wlist:
 
+    #TODO - Come back to make emotion matrix
+
     def __init__(self, wlist_path: str) -> None:
         columns = ['positive_means', 'negative_means', 'anger_means', 'anticipation_means', 'disgust_means', 
                 'fear_means', 'joy_means','sadness_means', 'surprise_means', 'trust_means', 'positive_uniq_means',

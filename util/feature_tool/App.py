@@ -255,15 +255,15 @@ class App:
         #open emovad
         emovad_df = pd.read_csv(os.getcwd() + '/wordlists/NRC-VAD-Lexicon.txt', names=['Word','Valence','Arousal','Dominance'], skiprows=1,  sep='\t')
 
-        print("EmoVAD U BsmVAD: " + str(len(set(emovad_df['Word']) & set(bsmvad_df['Word']))))   
+        print("EmoVAD ^ BsmVAD: " + str(len(set(emovad_df['Word']) & set(bsmvad_df['Word']))))   
 
         #open emolex
         emolex_df = pd.read_csv(os.getcwd() + '/wordlists/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt',  names=['Word','Emotion','Association'], skiprows=1, sep='\t') 
-        print("EmoVAD U EmoLEX: " + str(len(set(emovad_df['Word']) & set(emolex_df['Word']))))  
+        print("EmoVAD ^ EmoLEX: " + str(len(set(emovad_df['Word']) & set(emolex_df['Word']))))  
 
         #open mpqa
         mpqa_df = pd.read_csv(os.getcwd() + '/wordlists/MPQA_sentiment.csv',  names=['Word','Sentiment'], skiprows=0)
-        print("EmoVAD U MPQA" + str(len(set(emovad_df['Word']) & set(mpqa_df['Word']))))
+        print("EmoVAD ^ MPQA" + str(len(set(emovad_df['Word']) & set(mpqa_df['Word']))))
 
 if __name__ == "__main__":
     fe = App(comment_path="/mnt/g/new_data/subset_deezer_test")
