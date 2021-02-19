@@ -215,7 +215,60 @@ class App:
         'EmoLex_most_freq_trust_word_means_mean': 0.0, 'EmoLex_most_freq_trust_word_means_std': 0.0,
 
         'EmoLex_posneg_ratio_mean': 0.0, 'EmoLex_posneg_ratio_std': 0.0, 
-        'EmoLex_posneg_ratio_uniq_mean': 0.0, 'EmoLex_posneg_ratio_uniq_std': 0.0, 
+        'EmoLex_posneg_ratio_uniq_mean': 0.0, 'EmoLex_posneg_ratio_uniq_std': 0.0,
+
+        'EmoAff_glob_anger_mean': 0.0, 'EmoAff_glob_anger_std': 0.0,
+        'EmoAff_glob_fear_mean': 0.0, 'EmoAff_glob_fear_std': 0.0,
+        'EmoAff_glob_sadness_mean': 0.0, 'EmoAff_glob_sadness_std': 0.0,
+        'EmoAff_glob_joy_mean': 0.0, 'EmoAff_glob_joy_std': 0.0,
+        'EmoAff_glob_anger_mean_uniq': 0.0, 'EmoAff_glob_anger_std_uniq': 0.0,
+        'EmoAff_glob_fear_mean_uniq': 0.0, 'EmoAff_glob_fear_std_uniq': 0.0,
+        'EmoAff_glob_sadness_mean_uniq': 0.0, 'EmoAff_glob_sadness_std_uniq': 0.0,
+        'EmoAff_glob_joy_mean_uniq': 0.0, 'EmoAff_glob_joy_std_uniq': 0.0,
+
+        'EmoAff_glob_max_word_anger': 0.0, 'EmoAff_glob_max_word_fear': 0.0, 
+        'EmoAff_glob_max_word_sadness': 0.0, 'EmoAff_glob_max_word_joy': 0.0,
+
+        'EmoAff_glob_min_word_anger': 0.0, 'EmoAff_glob_min_word_fear': 0.0, 
+        'EmoAff_glob_min_word_sadness': 0.0, 'EmoAff_glob_min_word_joy': 0.0,
+
+        'EmoAff_glob_most_word_anger': 0.0, 'EmoAff_glob_most_word_fear': 0.0, 
+        'EmoAff_glob_most_word_sadness': 0.0, 'EmoAff_glob_most_word_joy': 0.0,
+
+        'EmoAff_anger_means_mean': 0.0, 'EmoAff_anger_means_std': 0.0,
+        'EmoAff_anger_stds_mean': 0.0, 'EmoAff_anger_stds_std': 0.0, 
+        'EmoAff_anger_uniq_means_mean': 0.0, 'EmoAff_anger_uniq_means_std': 0.0,
+        'EmoAff_anger_uniq_stds_mean': 0.0, 'EmoAff_anger_uniq_stds_std': 0.0,
+        
+        'EmoAff_fear_means_mean': 0.0, 'EmoAff_fear_means_std': 0.0,
+        'EmoAff_fear_stds_mean': 0.0, 'EmoAff_fear_stds_std': 0.0, 
+        'EmoAff_fear_uniq_means_mean': 0.0, 'EmoAff_fear_uniq_means_std': 0.0,
+        'EmoAff_fear_uniq_stds_mean': 0.0, 'EmoAff_fear_uniq_stds_std': 0.0,
+
+        'EmoAff_sadness_means_mean': 0.0, 'EmoAff_sadness_means_std': 0.0,
+        'EmoAff_sadness_stds_mean': 0.0, 'EmoAff_sadness_stds_std': 0.0, 
+        'EmoAff_sadness_uniq_means_mean': 0.0, 'EmoAff_sadness_uniq_means_std': 0.0,
+        'EmoAff_sadness_uniq_stds_mean': 0.0, 'EmoAff_sadness_uniq_stds_std': 0.0,
+
+        'EmoAff_joy_means_mean': 0.0, 'EmoAff_joy_means_std': 0.0,
+        'EmoAff_joy_stds_mean': 0.0, 'EmoAff_joy_stds_std': 0.0, 
+        'EmoAff_joy_uniq_means_mean': 0.0, 'EmoAff_joy_uniq_means_std': 0.0,
+        'EmoAff_joy_uniq_stds_mean': 0.0, 'EmoAff_joy_uniq_stds_std': 0.0,
+
+        'EmoAff_anger_max_word_mean': 0.0, 'EmoAff_anger_max_word_std': 0.0, 
+        'EmoAff_fear_max_word_mean': 0.0, 'EmoAff_fear_max_word_std': 0.0, 
+        'EmoAff_sadness_max_word_mean': 0.0, 'EmoAff_sadness_max_word_std': 0.0, 
+        'EmoAff_joy_max_word_mean': 0.0, 'EmoAff_joy_max_word_std': 0.0, 
+
+        'EmoAff_anger_min_word_mean': 0.0, 'EmoAff_anger_min_word_std': 0.0, 
+        'EmoAff_fear_min_word_mean': 0.0, 'EmoAff_fear_min_word_std': 0.0, 
+        'EmoAff_sadness_min_word_mean': 0.0, 'EmoAff_sadness_min_word_std': 0.0, 
+        'EmoAff_joy_min_word_mean': 0.0, 'EmoAff_joy_min_word_std': 0.0, 
+
+        'EmoAff_anger_most_word_mean': 0.0, 'EmoAff_anger_most_word_std': 0.0, 
+        'EmoAff_fear_most_word_mean': 0.0, 'EmoAff_fear_most_word_std': 0.0, 
+        'EmoAff_sadness_most_word_mean': 0.0, 'EmoAff_sadness_most_word_std': 0.0, 
+        'EmoAff_joy_most_word_mean': 0.0, 'EmoAff_joy_most_word_std': 0.0, 
     }
     
     def __init__(self,comment_path = "") -> None:

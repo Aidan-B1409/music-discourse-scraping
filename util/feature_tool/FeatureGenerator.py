@@ -15,7 +15,7 @@ class FeatureGenerator:
         "ANEW_Ext_Condensed": "ANEW_EnglishShortened.csv",
         "EmoLex": "NRC-Emotion-Lexicon-Wordlevel-v0.92.txt",
         "EmoVAD": "NRC-VAD-Lexicon.txt",
-        "EmoAff": "NRC-VAD-Lexicon.txt",
+        "EmoAff": "NRC-AffectIntensity-Lexicon.txt",
         "HSsent": "HS-unigrams.txt",
         "MPQA": "MPQA_sentiment.csv"
     }
