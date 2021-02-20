@@ -1,6 +1,5 @@
 from numpy.core.numeric import Infinity
 import pandas as pd 
-import numpy as np
 
 from wlist_utils import *
 from string_cleaner import clean_comment
