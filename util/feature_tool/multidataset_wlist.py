@@ -514,13 +514,13 @@ class MultiDataset_wlist:
             emolex_df = pd.read_csv(self._getpath('EmoLex'), names=['Word','Emotion','Association'], skiprows=1, sep='\t')
             
             emolex_positive_words = self._get_affect_subset('positive', emolex_df)
-            emovad_emolex_positive_words = pd.merge(emolex_positive_words, emovad_df, on='Word')
-            found_emovad_emolex_positive_words_df = unsquished_intersection(song_df, emovad_emolex_positive_words)
-            found_emovad_emolex_positive_words_uniq_df = glob_intersection(glob_df, emovad_emolex_positive_words)
-
             emolex_negative_words = self._get_affect_subset('negative', emolex_df)
+            emovad_emolex_positive_words = pd.merge(emolex_positive_words, emovad_df, on='Word')
             emovad_emolex_negative_words = pd.merge(emolex_negative_words, emovad_df, on='Word')
+
+            found_emovad_emolex_positive_words_df = unsquished_intersection(song_df, emovad_emolex_positive_words)
             found_emovad_emolex_negative_words_df = unsquished_intersection(song_df, emovad_emolex_negative_words)
+            found_emovad_emolex_positive_words_uniq_df = glob_intersection(glob_df, emovad_emolex_positive_words)
             found_emovad_emolex_negative_words_uniq_df = glob_intersection(glob_df, emovad_emolex_negative_words)
 
             # EmoVAD ^ MPQA
@@ -530,10 +530,40 @@ class MultiDataset_wlist:
 
             emovad_mpqa_positive_words = pd.merge(mpqa_positive_words, emovad_df, on='Word')
             emovad_mpqa_negative_words = pd.merge(mpqa_negative_words, emovad_df, on='Word')
+
             found_emovad_mpqa_positive_words_df = unsquished_intersection(song_df, emovad_mpqa_positive_words)
             found_emovad_mpqa_negative_words_df = unsquished_intersection(song_df, emovad_mpqa_negative_words)
             found_emovad_mpqa_positive_words_uniq_df = glob_intersection(glob_df, emovad_mpqa_positive_words)
             found_emovad_mpqa_negative_words_uniq_df = glob_intersection(glob_df, emovad_mpqa_negative_words)
+
+            #BsmVAD ^ EmoLex
+            bsmvad_df = pd.read_csv(self._getpath('ANEW_Extended'), encoding='utf-8', engine='python')
+            # drop unneeded columns
+            bsmvad_df.drop(bsmvad_df.iloc[:, 10:64].columns, axis = 1, inplace = True) 
+            bsmvad_df.drop(['V.Rat.Sum', 'A.Rat.Sum','D.Rat.Sum'], axis = 1, inplace = True) 
+            # drop blank rows, if any
+            bsmvad_df = bsmvad_df[bsmvad_df['Word'].notnull()]
+
+            bsmvad_emolex_positive_words = pd.merge(emolex_positive_words, bsmvad_df, on='Word')
+            bsmvad_emolex_negative_words = pd.merge(emolex_negative_words, bsmvad_df, on='Word')
+
+            found_bsmvad_emolex_positive_words_df = unsquished_intersection(song_df, bsmvad_emolex_positive_words)
+            found_bsmvad_emolex_negative_words_df = unsquished_intersection(song_df, bsmvad_emolex_negative_words)
+            found_bsmvad_emolex_positive_words_uniq_df = glob_intersection(glob_df, bsmvad_emolex_positive_words)
+            found_bsmvad_emolex_negative_words_uniq_df = glob_intersection(glob_df, bsmvad_emolex_negative_words)
+
+            #BsmVAD ^ MPQA 
+            bsmvad_mpqa_positive_words = pd.merge(mpqa_positive_words, bsmvad_df, on='Word')
+            bsmvad_mpqa_negative_words = pd.merge(mpqa_negative_words, bsmvad_df, on='Word')
+
+            found_bsmvad_mpqa_positive_words_df = unsquished_intersection(song_df, bsmvad_mpqa_positive_words)
+            found_bsmvad_mpqa_negative_words_df = unsquished_intersection(song_df, bsmvad_mpqa_negative_words)
+            found_bsmvad_mpqa_positive_words_uniq_df = glob_intersection(glob_df, bsmvad_mpqa_positive_words)
+            found_bsmvad_mpqa_negative_words_uniq_df = glob_intersection(glob_df, bsmvad_mpqa_negative_words)
+
+            print("BsmVad + mpqa: " + str(len(found_bsmvad_mpqa_positive_words_df)))
+
+            
 
         return self.features_wordlevel
 
@@ -552,6 +582,7 @@ class MultiDataset_wlist:
     def _get_mpqa_sentiment_subset(self, affect_key, mpqa_df) -> pd.DataFrame:
         excluded_indexes = mpqa_df[mpqa_df['Sentiment'] != affect_key].index
         mpqa_subset = mpqa_df.drop(excluded_indexes)
+        return mpqa_subset
 
     def _getpath(self, key):
         return getcwd() + '/wordlists/' + self.wlist_paths[key]

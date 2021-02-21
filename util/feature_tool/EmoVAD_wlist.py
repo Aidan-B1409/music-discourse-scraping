@@ -46,6 +46,12 @@ class EmoVAD_wlist:
         "EmoVAD_glob_d_uniq_ratio": 0.0, 
         }
 
+        for datatype in ['v', 'a', 'd']:
+            for analysis_type in ['mean', 'std', 'sqmean', 'max_word', 'min_word', 'most_word', 'ratio']:
+                for uniq_status in ['_uniq', '']:
+                    self.features_wordlevel[f"EmoVAD_glob_{datatype}_{analysis_type}{uniq_status}"] = 0.0
+
+
         self.features_commentlevel = {
         "EmoVAD_v_mean_mean": 0.0, "EmoVAD_v_mean_stdev": 0.0,
         "EmoVAD_v_std_mean": 0.0, "EmoVAD_v_stdev_stdev": 0.0,
