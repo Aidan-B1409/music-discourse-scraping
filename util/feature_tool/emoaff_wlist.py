@@ -206,7 +206,6 @@ class EmoAff_wlist:
 
     def _calc_mean_std(self, df, length, key, index):
         data = get_mean_std(df['Score'], length)
-        print(type(df))
         self.comment_analysis_df.at[index, str(key) + '_means'] = data[0]
         self.comment_analysis_df.at[index, str(key) + '_stds'] = data[1]
 

@@ -40,6 +40,7 @@ class MPQA_wlist:
             allword_semantic_word_df = unsquished_intersection(song_df, self.mpqa_df)
             uniq_semantic_word_df = glob_intersection(glob_df, self.mpqa_df)
 
+            #TODO - mean error here?
             positive_words = Series([row for row in allword_semantic_word_df.iterrows() if row[1]['Sentiment'] == 'positive'])
             negative_words = Series([row for row in allword_semantic_word_df.iterrows() if row[1]['Sentiment'] == 'negative'])
             positive_words_uniq = Series([row for row in uniq_semantic_word_df.iterrows() if row[1]['Sentiment'] == 'positive'])
