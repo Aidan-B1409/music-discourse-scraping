@@ -32,7 +32,7 @@ class FeatureGenerator:
         wlists.append(BSMVAD_wlist(getcwd() + '/wordlists/' + self.list_paths['ANEW_Extended']))
         wlists.append(MPQA_wlist(getcwd() + '/wordlists/' + self.list_paths['MPQA']))
         wlists.append(EmoLex_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoLex']))
-        # wlists.append(EmoAff_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoAff']))
+        wlists.append(EmoAff_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoAff']))
         # wlists.append(MultiDataset_wlist(self.list_paths))
         return wlists
 
