@@ -23,68 +23,9 @@ class EmoLex_wlist:
         self.comment_analysis_df = pd.DataFrame(columns=columns)
         self.emolex_df = pd.read_csv(wlist_path,  names=['Word','Emotion','Association'], skiprows=1, sep='\t')
 
-        self.features_wordlevel = {
-        'EmoLex_glob_positive_mean': 0.0, 'EmoLex_glob_positive_mean_uniq': 0.0,
-        'EmoLex_glob_negative_mean': 0.0, 'EmoLex_glob_negative_mean_uniq': 0.0,
-        'EmoLex_glob_anger_mean': 0.0, 'EmoLex_glob_anger_mean_uniq': 0.0,
-        'EmoLex_glob_anticipation_mean': 0.0, 'EmoLex_glob_anticipation_mean_uniq': 0.0,
-        'EmoLex_glob_disgust_mean': 0.0, 'EmoLex_glob_disgust_mean_uniq': 0.0,
-        'EmoLex_glob_fear_mean': 0.0, 'EmoLex_glob_fear_mean_uniq': 0.0,
-        'EmoLex_glob_joy_mean': 0.0, 'EmoLex_glob_joy_mean_uniq': 0.0,
-        'EmoLex_glob_sadness_mean': 0.0, 'EmoLex_glob_sadness_mean_uniq': 0.0,
-        'EmoLex_glob_surprise_mean': 0.0, 'EmoLex_glob_surprise_mean_uniq': 0.0,
-        'EmoLex_glob_trust_mean': 0.0, 'EmoLex_glob_trust_mean_uniq': 0.0,
+        self.features_wordlevel = {}
 
-        'EmoLex_glob_most_freq_positive_word_mean': 0.0,
-        'EmoLex_glob_most_freq_negative_word_mean': 0.0,
-        'EmoLex_glob_most_freq_anger_word_mean': 0.0,
-        'EmoLex_glob_most_freq_anticipation_word_mean': 0.0,
-        'EmoLex_glob_most_freq_disgust_word_mean': 0.0,
-        'EmoLex_glob_most_freq_fear_word_mean': 0.0,
-        'EmoLex_glob_most_freq_joy_word_mean': 0.0,
-        'EmoLex_glob_most_freq_sadness_word_mean': 0.0,
-        'EmoLex_glob_most_freq_surprise_word_mean': 0.0,
-        'EmoLex_glob_most_freq_trust_word_mean': 0.0,
-
-        'EmoLex_glob_posneg_ratio': 0.0, 'EmoLex_glob_posneg_ratio_uniq': 0.0
-        }
-
-        self.features_commentlevel = {
-        'EmoLex_positive_means_mean': 0.0, 'EmoLex_positive_means_std': 0.0,
-        'EmoLex_positive_means_uniq_mean': 0.0, 'EmoLex_positive_means_uniq_std': 0.0,
-        'EmoLex_negative_means_mean': 0.0, 'EmoLex_negative_means_std': 0.0,
-        'EmoLex_negative_means_uniq_mean': 0.0, 'EmoLex_negative_means_uniq_std': 0.0,
-        'EmoLex_anger_means_mean': 0.0, 'EmoLex_anger_means_std': 0.0, 
-        'EmoLex_anger_means_uniq_mean': 0.0, 'EmoLex_anger_means_uniq_std': 0.0,
-        'EmoLex_anticipation_means_mean': 0.0, 'EmoLex_anticipation_means_std': 0.0,
-        'EmoLex_anticipation_means_uniq_mean': 0.0, 'EmoLex_anticipation_means_uniq_std': 0.0,
-        'EmoLex_disgust_means_mean': 0.0, 'EmoLex_disgust_means_std': 0.0,
-        'EmoLex_disgust_means_uniq_mean': 0.0, 'EmoLex_disgust_means_uniq_std': 0.0,
-        'EmoLex_fear_means_mean': 0.0, 'EmoLex_fear_means_std': 0.0,
-        'EmoLex_fear_means_uniq_mean': 0.0, 'EmoLex_fear_means_uniq_std': 0.0,
-        'EmoLex_joy_means_mean': 0.0, 'EmoLex_joy_means_std': 0.0, 
-        'EmoLex_joy_means_uniq_mean': 0.0, 'EmoLex_joy_means_uniq_std': 0.0,
-        'EmoLex_sadness_means_mean': 0.0, 'EmoLex_sadness_means_std': 0.0,
-        'EmoLex_sadness_means_uniq_mean': 0.0, 'EmoLex_sadness_means_uniq_std': 0.0,
-        'EmoLex_surprise_means_mean': 0.0, 'EmoLex_surprise_means_std': 0.0, 
-        'EmoLex_surprise_means_uniq_mean': 0.0, 'EmoLex_surprise_means_uniq_std': 0.0,
-        'EmoLex_trust_means_mean': 0.0, 'EmoLex_trust_means_std': 0.0, 
-        'EmoLex_trust_means_uniq_mean': 0.0, 'EmoLex_trust_means_uniq_std': 0.0,
-
-        'EmoLex_most_freq_positive_word_means_mean': 0.0, 'EmoLex_most_freq_positive_word_means_std': 0.0,
-        'EmoLex_most_freq_negative_word_means_mean': 0.0, 'EmoLex_most_freq_negative_word_means_std': 0.0,
-        'EmoLex_most_freq_anger_word_means_mean': 0.0, 'EmoLex_most_freq_anger_word_means_std': 0.0,
-        'EmoLex_most_freq_anticipation_word_means_mean': 0.0, 'EmoLex_most_freq_anticipation_word_means_std': 0.0,
-        'EmoLex_most_freq_disgust_word_means_mean': 0.0, 'EmoLex_most_freq_disgust_word_means_std': 0.0,
-        'EmoLex_most_freq_fear_word_means_mean': 0.0, 'EmoLex_most_freq_fear_word_means_std': 0.0,
-        'EmoLex_most_freq_joy_word_means_mean': 0.0, 'EmoLex_most_freq_joy_word_means_std': 0.0,
-        'EmoLex_most_freq_sadness_word_means_mean': 0.0, 'EmoLex_most_freq_sadness_word_means_std': 0.0,
-        'EmoLex_most_freq_surprise_word_means_mean': 0.0, 'EmoLex_most_freq_surprise_word_means_std': 0.0,
-        'EmoLex_most_freq_trust_word_means_mean': 0.0, 'EmoLex_most_freq_trust_word_means_std': 0.0,
-
-        'EmoLex_posneg_ratio_mean': 0.0, 'EmoLex_posneg_ratio_std': 0.0, 
-        'EmoLex_posneg_ratio_uniq_mean': 0.0, 'EmoLex_posneg_ratio_uniq_std': 0.0, 
-        }
+        self.features_commentlevel = {}
 
 
     def wordlevel_analysis(self, song_df, glob_df) -> dict:

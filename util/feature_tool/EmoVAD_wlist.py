@@ -1,6 +1,4 @@
-from nltk.corpus.reader import wordlist
 import pandas as pd 
-import numpy as np
 
 from wlist_utils import *
 from string_cleaner import clean_comment
@@ -54,31 +52,6 @@ class EmoVAD_wlist:
         self.emovad_df = pd.read_csv(wlist_path, names=['Word','Valence','Arousal','Dominance'], skiprows=1,  sep='\t')
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()
-
-    def _write_mean_std(self, dict, write_key, wordlist_key, df):
-        data = get_mean_std(df[wordlist_key], len(df))
-        dict[f"{write_key}_mean"] = data[0]
-        dict[f"{write_key}_std"] = data[1]
-
-    def _ratio(self, series, threshold):
-        return sum(n > threshold for n in series) / sum(n < threshold for n in series)
-
-    def _write_ratio(self, dict, write_key, series_key, threshold, df):
-        dict[f"{write_key}_ratio"] = self._ratio(df[series_key], threshold)
-
-    def _write_min(self, dict, df, write_key, wordlist_key):
-        dict[f"{write_key}_min_word"] = df.at[df[wordlist_key].idxmin(), wordlist_key]
-
-    def _write_max(self, dict, df, write_key, wordlist_key):
-        dict[f"{write_key}_max_word"] = df.at[df[wordlist_key].idxmax(), wordlist_key]
-
-    def _write_most(self, dict, df, write_key, wordlist_key):
-        dict[f"{write_key}_most_word"] = df.at[df['Count'].idxmax(), wordlist_key]
-
-    def _itervad(self):
-        for data_type in [('v', 'Valence'), ('a', 'Arousal'), ('d', 'Dominance')]:
-            yield data_type[0], data_type[1]
-
 
     def wordlevel_analysis(self, song_df, glob_df) -> dict:
 
@@ -155,5 +128,29 @@ class EmoVAD_wlist:
             "min_word_score": df.at[df[data_key].idxmin(), data_key],
             "most_word_score": df.at[df['Count'].idxmax(), data_key],
         }
+
+    def _write_mean_std(self, dict, write_key, wordlist_key, df):
+        data = get_mean_std(df[wordlist_key], len(df))
+        dict[f"{write_key}_mean"] = data[0]
+        dict[f"{write_key}_std"] = data[1]
+
+    def _ratio(self, series, threshold):
+        return sum(n > threshold for n in series) / sum(n < threshold for n in series)
+
+    def _write_ratio(self, dict, write_key, series_key, threshold, df):
+        dict[f"{write_key}_ratio"] = self._ratio(df[series_key], threshold)
+
+    def _write_min(self, dict, df, write_key, wordlist_key):
+        dict[f"{write_key}_min_word"] = df.at[df[wordlist_key].idxmin(), wordlist_key]
+
+    def _write_max(self, dict, df, write_key, wordlist_key):
+        dict[f"{write_key}_max_word"] = df.at[df[wordlist_key].idxmax(), wordlist_key]
+
+    def _write_most(self, dict, df, write_key, wordlist_key):
+        dict[f"{write_key}_most_word"] = df.at[df['Count'].idxmax(), wordlist_key]
+
+    def _itervad(self):
+        for data_type in [('v', 'Valence'), ('a', 'Arousal'), ('d', 'Dominance')]:
+            yield data_type[0], data_type[1]
 
         

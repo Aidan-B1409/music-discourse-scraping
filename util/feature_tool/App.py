@@ -1,11 +1,13 @@
+from bsmvad_wlist import BSMVAD_wlist
 import pandas as pd
 import csv
 import os
 from os import walk
 from datetime import datetime
 
-from EmoVAD_wlist import EmoVAD_wlist
 import EmoVAD_wlist
+import bsmvad_wlist
+import mpqa_wlist
 from FeatureGenerator import FeatureGenerator
 from analysis import analyze_features
 
@@ -19,7 +21,7 @@ class App:
 
     m_features = {'Song_ID': "", 'Song_Name': "", 'n_words': -1, 'comment_length_stdev': -1, 'Song_Artist': "",
      'existing_valence': "", 'existing_arousal': "", 'n_words_uniq': -1, 'n_comments': -1, 'comment_length_mean': -1}
-    wordlists = {EmoVAD_wlist}
+    wordlists = {EmoVAD_wlist, bsmvad_wlist, mpqa_wlist}
     for wlist in wordlists:
         m_features.update(wlist.get_header())
     

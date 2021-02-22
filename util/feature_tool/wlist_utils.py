@@ -3,17 +3,9 @@ import pandas as pd
 from glob_maker import make_unsquished_glob
 from statistics import stdev
 
-def write_mean_std(features_dict, mean_key, std_key, data: tuple) -> None:
-    features_dict[mean_key] = data[0]
-    features_dict[std_key] = data [1]
-
-def lwrite_mean_std(features_dict, mean_key, std_key, series):
-    data = get_mean_std(series, len(series))
-    write_mean_std(features_dict, mean_key, std_key, data)
-
 # Find the mean and standard deviation of a given series from a dataframe, with a length unbound from the dataframe itself
 # returns (mean, std) tuple
-# NOTE: Skipping empty values here, at the end of the pipeline. Replace with imputation later? 
+# NOTE: Skipping empty values here. Replace with imputation later? 
 def get_mean_std(series, length) -> tuple:
     if length > 0:
         mean = series.sum(skipna=True) / length
