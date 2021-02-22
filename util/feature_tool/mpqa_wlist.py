@@ -85,14 +85,12 @@ class MPQA_wlist:
         uniq_found_word_df = glob_intersection(unique_words_df, self.mpqa_df)
 
         sentiment_counts = {"positive": 0, "negative":0}
-        uniq_sentiment_counts = {"positive_uniq": 0, "negative_uniq":0}
+        uniq_sentiment_counts = {"positive": 0, "negative":0}
 
         if(len(uniq_found_word_df) > 0):
             for datatype in ['positive', 'negative']:
                 sentiment_matched_words = self._get_sentiment_subset(datatype, found_word_df)
                 uniq_sentiment_matched_words = self._get_sentiment_subset(datatype, uniq_found_word_df)
-
-                # get_mean_std returns a (mean, std) tuple
 
                 self.comment_analysis_df.at[index, f'{datatype}_means'] = len(sentiment_matched_words) / len(found_word_df)
                 self.comment_analysis_df.at[index, f'{datatype}_uniq_means'] = len(uniq_sentiment_matched_words) / len(uniq_found_word_df)
@@ -125,11 +123,11 @@ class MPQA_wlist:
 
     def _get_sentiment_subset(self, affect_key, df) -> pd.DataFrame:
         excluded_indexes = df[df['Sentiment'] != affect_key].index
-        return df.drop(excluded_indexes)
+        return df.drop(excluded_indexes).copy()
 
     def _write_mean_std(self, dict, write_key, df_key, df):
-        df = df.dropna()
-        data = get_mean_std(df[df_key], len(df))
+        series = df[df_key].dropna()
+        data = get_mean_std(series, len(series))
         dict[f"{write_key}_mean"] = data[0]
         dict[f"{write_key}_std"] = data[1]
 
