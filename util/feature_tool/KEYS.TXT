@@ -1,0 +1,739 @@
+
+        "Song_ID": "",
+        "Song_Artist": "", "Song_Name": "",
+        "existing_valence": "", "existing_arousal": "",
+        "n_comments": -1, "n_words": -1, "n_words_uniq": -1,
+        "comment_length_mean": 0, "comment_length_stdev": 0,
+        
+        "EmoVAD_glob_v_mean": 0.0, "EmoVAD_glob_v_stdev": 0.0,
+        "EmoVAD_glob_a_mean": 0.0, "EmoVAD_glob_a_stdev": 0.0,
+        "EmoVAD_glob_d_mean": 0.0, "EmoVAD_glob_d_stdev": 0.0,
+        "EmoVAD_glob_v_mean_uniq": 0.0, "EmoVAD_glob_v_stdev_uniq": 0.0,
+        "EmoVAD_glob_a_mean_uniq": 0.0, "EmoVAD_glob_a_stdev_uniq": 0.0,
+        "EmoVAD_glob_d_mean_uniq": 0.0, "EmoVAD_glob_d_stdev_uniq": 0.0,
+
+        "EmoVAD_glob_v_sqmean": 0.0, "EmoVAD_glob_a_sqmean": 0.0, 
+        "EmoVAD_glob_d_sqmean": 0.0, "EmoVAD_glob_v_sqmean_uniq": 0.0, 
+        "EmoVAD_glob_a_sqmean_uniq": 0.0, "EmoVAD_glob_d_sqmean_uniq": 0.0, 
+
+        "EmoVAD_glob_max_word_v": 0.0, "EmoVAD_glob_max_word_a": 0.0,
+        "EmoVAD_glob_max_word_d": 0.0, 
+        
+        "EmoVAD_glob_min_word_v": 0.0,
+        "EmoVAD_glob_min_word_a": 0.0, "EmoVAD_glob_min_word_d": 0.0,
+
+        "EmoVAD_glob_most_word_v": 0.0, "EmoVAD_glob_most_word_a": 0.0,
+        "EmoVAD_glob_most_word_d": 0.0, "EmoVAD_glob_most_word_count": 0.0,
+
+        "EmoVAD_glob_v_ratio": 0.0, "EmoVAD_glob_a_ratio": 0.0, 
+        "EmoVAD_glob_d_ratio": 0.0, 
+        "EmoVAD_glob_v_uniq_ratio": 0.0, "EmoVAD_glob_a_uniq_ratio": 0.0, 
+        "EmoVAD_glob_d_uniq_ratio": 0.0, 
+
+        "EmoVAD_v_mean_mean": 0.0, "EmoVAD_v_mean_stdev": 0.0,
+        "EmoVAD_v_std_mean": 0.0, "EmoVAD_v_stdev_stdev": 0.0,
+        "EmoVAD_v_uniq_mean_mean": 0.0, "EmoVAD_v_uniq_mean_stdev": 0.0,
+        "EmoVAD_v_uniq_std_mean": 0.0, "EmoVAD_v_uniq_stdev_stdev": 0.0,
+
+        "EmoVAD_a_mean_mean": 0.0, "EmoVAD_a_mean_stdev": 0.0,
+        "EmoVAD_a_std_mean": 0.0, "EmoVAD_a_stdev_stdev": 0.0,
+        "EmoVAD_a_uniq_mean_mean": 0.0, "EmoVAD_a_uniq_mean_stdev": 0.0,
+        "EmoVAD_a_uniq_std_mean": 0.0, "EmoVAD_a_uniq_stdev_stdev": 0.0,
+
+        "EmoVAD_d_mean_mean": 0.0, "EmoVAD_d_mean_stdev": 0.0,
+        "EmoVAD_d_std_mean": 0.0, "EmoVAD_d_stdev_stdev": 0.0,
+        "EmoVAD_d_uniq_mean_mean": 0.0, "EmoVAD_d_uniq_mean_stdev": 0.0,
+        "EmoVAD_d_uniq_std_mean": 0.0, "EmoVAD_d_uniq_stdev_stdev": 0.0,
+
+        "EmoVAD_max_word_v_mean": 0.0, "EmoVAD_max_word_v_std": 0.0,
+        "EmoVAD_max_word_a_mean": 0.0, "EmoVAD_max_word_a_std": 0.0,
+        "EmoVAD_max_word_d_mean": 0.0, "EmoVAD_max_word_d_std": 0.0,
+
+        "EmoVAD_max_word_v_sqmean": 0.0, "EmoVAD_max_word_v_sqstd": 0.0,
+        "EmoVAD_max_word_a_sqmean": 0.0, "EmoVAD_max_word_a_sqstd": 0.0,
+        "EmoVAD_max_word_d_sqmean": 0.0, "EmoVAD_max_word_d_sqstd": 0.0,
+        
+        "EmoVAD_min_word_v_mean": 0.0, "EmoVAD_min_word_v_std": 0.0,
+        "EmoVAD_min_word_a_mean": 0.0, "EmoVAD_min_word_a_std": 0.0,
+        "EmoVAD_min_word_d_mean": 0.0, "EmoVAD_min_word_d_std": 0.0,
+
+        "EmoVAD_most_word_v_mean": 0.0, "EmoVAD_most_word_v_std": 0.0,
+        "EmoVAD_most_word_a_mean": 0.0, "EmoVAD_most_word_a_std": 0.0,
+        "EmoVAD_most_word_d_mean": 0.0, "EmoVAD_most_word_d_std": 0.0,
+        "EmoVAD_most_word_count_mean": 0.0, "EmoVAD_most_word_count_std": 0.0,
+
+
+        "bsmVAD_glob_v_mean": 0.0, "bsmVAD_glob_v_stdev": 0.0,
+        "bsmVAD_glob_a_mean": 0.0, "bsmVAD_glob_a_stdev": 0.0,
+        "bsmVAD_glob_d_mean": 0.0, "bsmVAD_glob_d_stdev": 0.0,
+        "bsmVAD_glob_v_mean_uniq": 0.0, "bsmVAD_glob_v_stdev_uniq": 0.0,
+        "bsmVAD_glob_a_mean_uniq": 0.0, "bsmVAD_glob_a_stdev_uniq": 0.0,
+        "bsmVAD_glob_d_mean_uniq": 0.0, "bsmVAD_glob_d_stdev_uniq": 0.0,
+
+        "bsmVAD_glob_v_sqmean": 0.0, "bsmVAD_glob_a_sqmean": 0.0, 
+        "bsmVAD_glob_d_sqmean": 0.0, "bsmVAD_glob_v_sqmean_uniq": 0.0, 
+        "bsmVAD_glob_a_sqmean_uniq": 0.0, "bsmVAD_glob_d_sqmean_uniq": 0.0, 
+
+        "bsmVAD_glob_max_word_v": 0.0, "bsmVAD_glob_max_word_a": 0.0,
+        "bsmVAD_glob_max_word_d": 0.0, 
+        
+        "bsmVAD_glob_min_word_v": 0.0,
+        "bsmVAD_glob_min_word_a": 0.0, "bsmVAD_glob_min_word_d": 0.0,
+
+        "bsmVAD_glob_most_word_v": 0.0, "bsmVAD_glob_most_word_a": 0.0,
+        "bsmVAD_glob_most_word_d": 0.0, "bsmVAD_glob_most_word_count": 0.0,
+
+        "bsmVAD_glob_v_ratio": 0.0, "bsmVAD_glob_a_ratio": 0.0, 
+        "bsmVAD_glob_d_ratio": 0.0, 
+        "bsmVAD_glob_v_uniq_ratio": 0.0, "bsmVAD_glob_a_uniq_ratio": 0.0, 
+        "bsmVAD_glob_d_uniq_ratio": 0.0, 
+
+        "bsmVAD_v_mean_mean": 0.0, "bsmVAD_v_mean_stdev": 0.0,
+        "bsmVAD_v_std_mean": 0.0, "bsmVAD_v_stdev_stdev": 0.0,
+        "bsmVAD_v_uniq_mean_mean": 0.0, "bsmVAD_v_uniq_mean_stdev": 0.0,
+        "bsmVAD_v_uniq_std_mean": 0.0, "bsmVAD_v_uniq_stdev_stdev": 0.0,
+
+        "bsmVAD_a_mean_mean": 0.0, "bsmVAD_a_mean_stdev": 0.0,
+        "bsmVAD_a_std_mean": 0.0, "bsmVAD_a_stdev_stdev": 0.0,
+        "bsmVAD_a_uniq_mean_mean": 0.0, "bsmVAD_a_uniq_mean_stdev": 0.0,
+        "bsmVAD_a_uniq_std_mean": 0.0, "bsmVAD_a_uniq_stdev_stdev": 0.0,
+
+        "bsmVAD_d_mean_mean": 0.0, "bsmVAD_d_mean_stdev": 0.0,
+        "bsmVAD_d_std_mean": 0.0, "bsmVAD_d_stdev_stdev": 0.0,
+        "bsmVAD_d_uniq_mean_mean": 0.0, "bsmVAD_d_uniq_mean_stdev": 0.0,
+        "bsmVAD_d_uniq_std_mean": 0.0, "bsmVAD_d_uniq_stdev_stdev": 0.0,
+
+        "bsmVAD_max_word_v_mean": 0.0, "bsmVAD_max_word_v_std": 0.0,
+        "bsmVAD_max_word_a_mean": 0.0, "bsmVAD_max_word_a_std": 0.0,
+        "bsmVAD_max_word_d_mean": 0.0, "bsmVAD_max_word_d_std": 0.0,
+
+        "bsmVAD_max_word_v_sqmean": 0.0, "bsmVAD_max_word_v_sqstd": 0.0,
+        "bsmVAD_max_word_a_sqmean": 0.0, "bsmVAD_max_word_a_sqstd": 0.0,
+        "bsmVAD_max_word_d_sqmean": 0.0, "bsmVAD_max_word_d_sqstd": 0.0,
+        
+        "bsmVAD_min_word_v_mean": 0.0, "bsmVAD_min_word_v_std": 0.0,
+        "bsmVAD_min_word_a_mean": 0.0, "bsmVAD_min_word_a_std": 0.0,
+        "bsmVAD_min_word_d_mean": 0.0, "bsmVAD_min_word_d_std": 0.0,
+
+        "bsmVAD_most_word_v_mean": 0.0, "bsmVAD_most_word_v_std": 0.0,
+        "bsmVAD_most_word_a_mean": 0.0, "bsmVAD_most_word_a_std": 0.0,
+        "bsmVAD_most_word_d_mean": 0.0, "bsmVAD_most_word_d_std": 0.0,
+        "bsmVAD_most_word_count_mean": 0.0, "bsmVAD_most_word_count_std": 0.0,
+
+        'mpqa_glob_positive_mean': 0.0, 'mpqa_glob_negative_mean': 0.0,
+        'mpqa_glob_positive_mean_uniq': 0.0, 'mpqa_glob_negative_mean_uniq': 0.0,
+
+        'mpqa_positive_mostfreqword_mean': 0.0, 'mpqa_negative_mostfreqword_mean': 0.0,
+        'mpqa_glob_ratio': 0.0, 'mpqa_glob_ratio_uniq': 0.0,
+
+        'mpqa_positive_means_mean': 0.0, 'mpqa_positive_means_std': 0.0,
+        'mpqa_positive_means_uniq_mean': 0.0, 'mpqa_positive_means_uniq_std': 0.0,
+        'mpqa_negative_means_mean': 0.0, 'mpqa_negative_means_std': 0.0,
+        'mpqa_negative_means_uniq_mean': 0.0, 'mpqa_negative_means_uniq_std': 0.0,
+
+        'mpqa_mostfreq_positiveword_means_mean': 0.0, 'mpqa_mostfreq_positiveword_means_std': 0.0,
+        'mpqa_mostfreq_negativeword_means_mean': 0.0, 'mpqa_mostfreq_negativeword_means_std': 0.0,
+        'mpqa_ratio_mean': 0.0, 'mpqa_ratio_std': 0.0,
+        'mpqa_ratio_uniq_mean': 0.0, 'mpqa_ratio_uniq_std': 0.0, 
+
+        'EmoLex_glob_positive_mean': 0.0, 'EmoLex_glob_positive_mean_uniq': 0.0,
+        'EmoLex_glob_negative_mean': 0.0, 'EmoLex_glob_negative_mean_uniq': 0.0,
+        'EmoLex_glob_anger_mean': 0.0, 'EmoLex_glob_anger_mean_uniq': 0.0,
+        'EmoLex_glob_anticipation_mean': 0.0, 'EmoLex_glob_anticipation_mean_uniq': 0.0,
+        'EmoLex_glob_disgust_mean': 0.0, 'EmoLex_glob_disgust_mean_uniq': 0.0,
+        'EmoLex_glob_fear_mean': 0.0, 'EmoLex_glob_fear_mean_uniq': 0.0,
+        'EmoLex_glob_joy_mean': 0.0, 'EmoLex_glob_joy_mean_uniq': 0.0,
+        'EmoLex_glob_sadness_mean': 0.0, 'EmoLex_glob_sadness_mean_uniq': 0.0,
+        'EmoLex_glob_surprise_mean': 0.0, 'EmoLex_glob_surprise_mean_uniq': 0.0,
+        'EmoLex_glob_trust_mean': 0.0, 'EmoLex_glob_trust_mean_uniq': 0.0,
+
+        'EmoLex_glob_most_freq_positive_word_mean': 0.0,
+        'EmoLex_glob_most_freq_negative_word_mean': 0.0,
+        'EmoLex_glob_most_freq_anger_word_mean': 0.0,
+        'EmoLex_glob_most_freq_anticipation_word_mean': 0.0,
+        'EmoLex_glob_most_freq_disgust_word_mean': 0.0,
+        'EmoLex_glob_most_freq_fear_word_mean': 0.0,
+        'EmoLex_glob_most_freq_joy_word_mean': 0.0,
+        'EmoLex_glob_most_freq_sadness_word_mean': 0.0,
+        'EmoLex_glob_most_freq_surprise_word_mean': 0.0,
+        'EmoLex_glob_most_freq_trust_word_mean': 0.0,
+
+        'EmoLex_glob_posneg_ratio': 0.0, 'EmoLex_glob_posneg_ratio_uniq': 0.0, 
+
+        'EmoLex_positive_means_mean': 0.0, 'EmoLex_positive_means_std': 0.0,
+        'EmoLex_positive_means_uniq_mean': 0.0, 'EmoLex_positive_means_uniq_std': 0.0,
+        'EmoLex_negative_means_mean': 0.0, 'EmoLex_negative_means_std': 0.0,
+        'EmoLex_negative_means_uniq_mean': 0.0, 'EmoLex_negative_means_uniq_std': 0.0,
+        'EmoLex_anger_means_mean': 0.0, 'EmoLex_anger_means_std': 0.0, 
+        'EmoLex_anger_means_uniq_mean': 0.0, 'EmoLex_anger_means_uniq_std': 0.0,
+        'EmoLex_anticipation_means_mean': 0.0, 'EmoLex_anticipation_means_std': 0.0,
+        'EmoLex_anticipation_means_uniq_mean': 0.0, 'EmoLex_anticipation_means_uniq_std': 0.0,
+        'EmoLex_disgust_means_mean': 0.0, 'EmoLex_disgust_means_std': 0.0,
+        'EmoLex_disgust_means_uniq_mean': 0.0, 'EmoLex_disgust_means_uniq_std': 0.0,
+        'EmoLex_fear_means_mean': 0.0, 'EmoLex_fear_means_std': 0.0,
+        'EmoLex_fear_means_uniq_mean': 0.0, 'EmoLex_fear_means_uniq_std': 0.0,
+        'EmoLex_joy_means_mean': 0.0, 'EmoLex_joy_means_std': 0.0, 
+        'EmoLex_joy_means_uniq_mean': 0.0, 'EmoLex_joy_means_uniq_std': 0.0,
+        'EmoLex_sadness_means_mean': 0.0, 'EmoLex_sadness_means_std': 0.0,
+        'EmoLex_sadness_means_uniq_mean': 0.0, 'EmoLex_sadness_means_uniq_std': 0.0,
+        'EmoLex_surprise_means_mean': 0.0, 'EmoLex_surprise_means_std': 0.0, 
+        'EmoLex_surprise_means_uniq_mean': 0.0, 'EmoLex_surprise_means_uniq_std': 0.0,
+        'EmoLex_trust_means_mean': 0.0, 'EmoLex_trust_means_std': 0.0, 
+        'EmoLex_trust_means_uniq_mean': 0.0, 'EmoLex_trust_means_uniq_std': 0.0,
+
+        'EmoLex_most_freq_positive_word_means_mean': 0.0, 'EmoLex_most_freq_positive_word_means_std': 0.0,
+        'EmoLex_most_freq_negative_word_means_mean': 0.0, 'EmoLex_most_freq_negative_word_means_std': 0.0,
+        'EmoLex_most_freq_anger_word_means_mean': 0.0, 'EmoLex_most_freq_anger_word_means_std': 0.0,
+        'EmoLex_most_freq_anticipation_word_means_mean': 0.0, 'EmoLex_most_freq_anticipation_word_means_std': 0.0,
+        'EmoLex_most_freq_disgust_word_means_mean': 0.0, 'EmoLex_most_freq_disgust_word_means_std': 0.0,
+        'EmoLex_most_freq_fear_word_means_mean': 0.0, 'EmoLex_most_freq_fear_word_means_std': 0.0,
+        'EmoLex_most_freq_joy_word_means_mean': 0.0, 'EmoLex_most_freq_joy_word_means_std': 0.0,
+        'EmoLex_most_freq_sadness_word_means_mean': 0.0, 'EmoLex_most_freq_sadness_word_means_std': 0.0,
+        'EmoLex_most_freq_surprise_word_means_mean': 0.0, 'EmoLex_most_freq_surprise_word_means_std': 0.0,
+        'EmoLex_most_freq_trust_word_means_mean': 0.0, 'EmoLex_most_freq_trust_word_means_std': 0.0,
+
+        'EmoLex_posneg_ratio_mean': 0.0, 'EmoLex_posneg_ratio_std': 0.0, 
+        'EmoLex_posneg_ratio_uniq_mean': 0.0, 'EmoLex_posneg_ratio_uniq_std': 0.0,
+
+        'EmoAff_glob_anger_mean': 0.0, 'EmoAff_glob_anger_std': 0.0,
+        'EmoAff_glob_fear_mean': 0.0, 'EmoAff_glob_fear_std': 0.0,
+        'EmoAff_glob_sadness_mean': 0.0, 'EmoAff_glob_sadness_std': 0.0,
+        'EmoAff_glob_joy_mean': 0.0, 'EmoAff_glob_joy_std': 0.0,
+        'EmoAff_glob_anger_mean_uniq': 0.0, 'EmoAff_glob_anger_std_uniq': 0.0,
+        'EmoAff_glob_fear_mean_uniq': 0.0, 'EmoAff_glob_fear_std_uniq': 0.0,
+        'EmoAff_glob_sadness_mean_uniq': 0.0, 'EmoAff_glob_sadness_std_uniq': 0.0,
+        'EmoAff_glob_joy_mean_uniq': 0.0, 'EmoAff_glob_joy_std_uniq': 0.0,
+
+        'EmoAff_glob_max_word_anger': 0.0, 'EmoAff_glob_max_word_fear': 0.0, 
+        'EmoAff_glob_max_word_sadness': 0.0, 'EmoAff_glob_max_word_joy': 0.0,
+
+        'EmoAff_glob_min_word_anger': 0.0, 'EmoAff_glob_min_word_fear': 0.0, 
+        'EmoAff_glob_min_word_sadness': 0.0, 'EmoAff_glob_min_word_joy': 0.0,
+
+        'EmoAff_glob_most_word_anger': 0.0, 'EmoAff_glob_most_word_fear': 0.0, 
+        'EmoAff_glob_most_word_sadness': 0.0, 'EmoAff_glob_most_word_joy': 0.0,
+
+        'EmoAff_anger_means_mean': 0.0, 'EmoAff_anger_means_std': 0.0,
+        'EmoAff_anger_stds_mean': 0.0, 'EmoAff_anger_stds_std': 0.0, 
+        'EmoAff_anger_uniq_means_mean': 0.0, 'EmoAff_anger_uniq_means_std': 0.0,
+        'EmoAff_anger_uniq_stds_mean': 0.0, 'EmoAff_anger_uniq_stds_std': 0.0,
+        
+        'EmoAff_fear_means_mean': 0.0, 'EmoAff_fear_means_std': 0.0,
+        'EmoAff_fear_stds_mean': 0.0, 'EmoAff_fear_stds_std': 0.0, 
+        'EmoAff_fear_uniq_means_mean': 0.0, 'EmoAff_fear_uniq_means_std': 0.0,
+        'EmoAff_fear_uniq_stds_mean': 0.0, 'EmoAff_fear_uniq_stds_std': 0.0,
+
+        'EmoAff_sadness_means_mean': 0.0, 'EmoAff_sadness_means_std': 0.0,
+        'EmoAff_sadness_stds_mean': 0.0, 'EmoAff_sadness_stds_std': 0.0, 
+        'EmoAff_sadness_uniq_means_mean': 0.0, 'EmoAff_sadness_uniq_means_std': 0.0,
+        'EmoAff_sadness_uniq_stds_mean': 0.0, 'EmoAff_sadness_uniq_stds_std': 0.0,
+
+        'EmoAff_joy_means_mean': 0.0, 'EmoAff_joy_means_std': 0.0,
+        'EmoAff_joy_stds_mean': 0.0, 'EmoAff_joy_stds_std': 0.0, 
+        'EmoAff_joy_uniq_means_mean': 0.0, 'EmoAff_joy_uniq_means_std': 0.0,
+        'EmoAff_joy_uniq_stds_mean': 0.0, 'EmoAff_joy_uniq_stds_std': 0.0,
+
+        'EmoAff_anger_max_word_mean': 0.0, 'EmoAff_anger_max_word_std': 0.0, 
+        'EmoAff_fear_max_word_mean': 0.0, 'EmoAff_fear_max_word_std': 0.0, 
+        'EmoAff_sadness_max_word_mean': 0.0, 'EmoAff_sadness_max_word_std': 0.0, 
+        'EmoAff_joy_max_word_mean': 0.0, 'EmoAff_joy_max_word_std': 0.0, 
+
+        'EmoAff_anger_min_word_mean': 0.0, 'EmoAff_anger_min_word_std': 0.0, 
+        'EmoAff_fear_min_word_mean': 0.0, 'EmoAff_fear_min_word_std': 0.0, 
+        'EmoAff_sadness_min_word_mean': 0.0, 'EmoAff_sadness_min_word_std': 0.0, 
+        'EmoAff_joy_min_word_mean': 0.0, 'EmoAff_joy_min_word_std': 0.0, 
+
+        'EmoAff_anger_most_word_mean': 0.0, 'EmoAff_anger_most_word_std': 0.0, 
+        'EmoAff_fear_most_word_mean': 0.0, 'EmoAff_fear_most_word_std': 0.0, 
+        'EmoAff_sadness_most_word_mean': 0.0, 'EmoAff_sadness_most_word_std': 0.0, 
+        'EmoAff_joy_most_word_mean': 0.0, 'EmoAff_joy_most_word_std': 0.0, 
+
+        'EmoVad_^_EmoLex_glob_positive_words_v_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_v_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std_uniq': 0.0,
+
+            "EmoVAD_^_EmoLex_glob_positive_max_word_v": 0.0, "EmoVAD_^_EmoLex_glob_positive_max_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_positive_max_word_d": 0.0, 
+            
+            "EmoVAD_^_EmoLex_glob_positive_min_word_v": 0.0,
+            "EmoVAD_^_EmoLex_glob_positive_min_word_a": 0.0, "EmoVAD_^_EmoLex_glob_positive_min_word_d": 0.0,
+
+            "EmoVAD_^_EmoLex_glob_positive_most_word_v": 0.0, "EmoVAD_^_EmoLex_glob_positive_most_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_positive_most_word_d": 0.0,
+
+            'EmoVad_^_EmoLex_glob_positive_words_v_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_v_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std_uniq': 0.0,
+
+            "EmoVAD_^_EmoLex_glob_negative_max_word_v": 0.0, "EmoVAD_^_EmoLex_glob_negative_max_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_negative_max_word_d": 0.0, 
+            
+            "EmoVAD_^_EmoLex_glob_negative_min_word_v": 0.0,
+            "EmoVAD_^_EmoLex_glob_negative_min_word_a": 0.0, "EmoVAD_^_EmoLex_glob_negative_min_word_d": 0.0,
+
+            "EmoVAD_^_EmoLex_glob_negative_most_word_v": 0.0, "EmoVAD_^_EmoLex_glob_negative_most_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_negative_most_word_d": 0.0, 
+
+            'EmoVad_^_EmoLex_glob_posneg_v_ratio': 0.0, 'EmoVad_^_EmoLex_glob_posneg_a_ratio': 0.0, 
+            'EmoVad_^_EmoLex_glob_posneg_d_ratio': 0.0, 
+
+            'EmoVad_^_EmoLex_glob_posneg_v_ratio_uniq': 0.0, 'EmoVad_^_EmoLex_glob_posneg_a_ratio_uniq': 0.0, 
+            'EmoVad_^_EmoLex_glob_posneg_d_ratio_uniq': 0.0, 
+
+
+
+            'EmoVad_^_MPQA_glob_positive_words_v_mean': 0.0, 'EmoVad_^_MPQA_glob_positive_words_v_std': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_a_mean': 0.0, 'EmoVad_^_MPQA_glob_positive_words_a_std': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_d_mean': 0.0, 'EmoVad_^_MPQA_glob_positive_words_d_std': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_v_mean_uniq': 0.0, 'EmoVad_^_MPQA_glob_positive_words_v_std_uniq': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_a_mean_uniq': 0.0, 'EmoVad_^_MPQA_glob_positive_words_a_std_uniq': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_d_mean_uniq': 0.0, 'EmoVad_^_MPQA_glob_positive_words_d_std_uniq': 0.0,
+
+            "EmoVAD_^_MPQA_glob_positive_max_word_v": 0.0, "EmoVAD_^_MPQA_glob_positive_max_word_a": 0.0,
+            "EmoVAD_^_MPQA_glob_positive_max_word_d": 0.0, 
+            
+            "EmoVAD_^_MPQA_glob_positive_min_word_v": 0.0,
+            "EmoVAD_^_MPQA_glob_positive_min_word_a": 0.0, "EmoVAD_^_MPQA_glob_positive_min_word_d": 0.0,
+
+            "EmoVAD_^_MPQA_glob_positive_most_word_v": 0.0, "EmoVAD_^_MPQA_glob_positive_most_word_a": 0.0,
+            "EmoVAD_^_MPQA_glob_positive_most_word_d": 0.0,
+
+            'EmoVad_^_MPQA_glob_positive_words_v_mean': 0.0, 'EmoVad_^_MPQA_glob_positive_words_v_std': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_a_mean': 0.0, 'EmoVad_^_MPQA_glob_positive_words_a_std': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_d_mean': 0.0, 'EmoVad_^_MPQA_glob_positive_words_d_std': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_v_mean_uniq': 0.0, 'EmoVad_^_MPQA_glob_positive_words_v_std_uniq': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_a_mean_uniq': 0.0, 'EmoVad_^_MPQA_glob_positive_words_a_std_uniq': 0.0,
+            'EmoVad_^_MPQA_glob_positive_words_d_mean_uniq': 0.0, 'EmoVad_^_MPQA_glob_positive_words_d_std_uniq': 0.0,
+
+            "EmoVAD_^_MPQA_glob_negative_max_word_v": 0.0, "EmoVAD_^_MPQA_glob_negative_max_word_a": 0.0,
+            "EmoVAD_^_MPQA_glob_negative_max_word_d": 0.0, 
+            
+            "EmoVAD_^_MPQA_glob_negative_min_word_v": 0.0,
+            "EmoVAD_^_MPQA_glob_negative_min_word_a": 0.0, "EmoVAD_^_MPQA_glob_negative_min_word_d": 0.0,
+
+            "EmoVAD_^_MPQA_glob_negative_most_word_v": 0.0, "EmoVAD_^_MPQA_glob_negative_most_word_a": 0.0,
+            "EmoVAD_^_MPQA_glob_negative_most_word_d": 0.0, 
+
+            'EmoVad_^_MPQA_glob_posneg_v_ratio': 0.0, 'EmoVad_^_MPQA_glob_posneg_a_ratio': 0.0, 
+            'EmoVad_^_MPQA_glob_posneg_d_ratio': 0.0, 
+
+            'EmoVad_^_MPQA_glob_posneg_v_ratio_uniq': 0.0, 'EmoVad_^_MPQA_glob_posneg_a_ratio_uniq': 0.0, 
+            'EmoVad_^_MPQA_glob_posneg_d_ratio_uniq': 0.0, 
+
+
+            'EmoVad_^_EmoLex_glob_positive_words_v_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_v_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std_uniq': 0.0,
+
+            "EmoVAD_^_EmoLex_glob_positive_max_word_v": 0.0, "EmoVAD_^_EmoLex_glob_positive_max_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_positive_max_word_d": 0.0, 
+            
+            "EmoVAD_^_EmoLex_glob_positive_min_word_v": 0.0,
+            "EmoVAD_^_EmoLex_glob_positive_min_word_a": 0.0, "EmoVAD_^_EmoLex_glob_positive_min_word_d": 0.0,
+
+            "EmoVAD_^_EmoLex_glob_positive_most_word_v": 0.0, "EmoVAD_^_EmoLex_glob_positive_most_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_positive_most_word_d": 0.0,
+
+            'EmoVad_^_EmoLex_glob_positive_words_v_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_v_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_v_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_a_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_a_std_uniq': 0.0,
+            'EmoVad_^_EmoLex_glob_positive_words_d_mean_uniq': 0.0, 'EmoVad_^_EmoLex_glob_positive_words_d_std_uniq': 0.0,
+
+            "EmoVAD_^_EmoLex_glob_negative_max_word_v": 0.0, "EmoVAD_^_EmoLex_glob_negative_max_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_negative_max_word_d": 0.0, 
+            
+            "EmoVAD_^_EmoLex_glob_negative_min_word_v": 0.0,
+            "EmoVAD_^_EmoLex_glob_negative_min_word_a": 0.0, "EmoVAD_^_EmoLex_glob_negative_min_word_d": 0.0,
+
+            "EmoVAD_^_EmoLex_glob_negative_most_word_v": 0.0, "EmoVAD_^_EmoLex_glob_negative_most_word_a": 0.0,
+            "EmoVAD_^_EmoLex_glob_negative_most_word_d": 0.0, 
+
+            'EmoVad_^_EmoLex_glob_posneg_v_ratio': 0.0, 'EmoVad_^_EmoLex_glob_posneg_a_ratio': 0.0, 
+            'EmoVad_^_EmoLex_glob_posneg_d_ratio': 0.0, 
+
+            'EmoVad_^_EmoLex_glob_posneg_v_ratio_uniq': 0.0, 'EmoVad_^_EmoLex_glob_posneg_a_ratio_uniq': 0.0, 
+            'EmoVad_^_EmoLex_glob_posneg_d_ratio_uniq': 0.0, 
+
+
+            'BsmVad_^_EmoLex_glob_positive_words_v_mean': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_v_std': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_a_mean': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_a_std': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_d_mean': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_d_std': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_v_mean_uniq': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_v_std_uniq': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_a_mean_uniq': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_a_std_uniq': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_d_mean_uniq': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_d_std_uniq': 0.0,
+
+            "BsmVad_^_EmoLex_glob_positive_max_word_v": 0.0, "BsmVad_^_EmoLex_glob_positive_max_word_a": 0.0,
+            "BsmVad_^_EmoLex_glob_positive_max_word_d": 0.0, 
+            
+            "BsmVad_^_EmoLex_glob_positive_min_word_v": 0.0,
+            "BsmVad_^_EmoLex_glob_positive_min_word_a": 0.0, "BsmVad_^_EmoLex_glob_positive_min_word_d": 0.0,
+
+            "BsmVad_^_EmoLex_glob_positive_most_word_v": 0.0, "BsmVad_^_EmoLex_glob_positive_most_word_a": 0.0,
+            "BsmVad_^_EmoLex_glob_positive_most_word_d": 0.0,
+
+            'BsmVad_^_EmoLex_glob_positive_words_v_mean': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_v_std': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_a_mean': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_a_std': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_d_mean': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_d_std': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_v_mean_uniq': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_v_std_uniq': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_a_mean_uniq': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_a_std_uniq': 0.0,
+            'BsmVad_^_EmoLex_glob_positive_words_d_mean_uniq': 0.0, 'BsmVad_^_EmoLex_glob_positive_words_d_std_uniq': 0.0,
+
+            "BsmVad_^_EmoLex_glob_negative_max_word_v": 0.0, "BsmVad_^_EmoLex_glob_negative_max_word_a": 0.0,
+            "BsmVad_^_EmoLex_glob_negative_max_word_d": 0.0, 
+            
+            "BsmVad_^_EmoLex_glob_negative_min_word_v": 0.0,
+            "BsmVad_^_EmoLex_glob_negative_min_word_a": 0.0, "BsmVad_^_EmoLex_glob_negative_min_word_d": 0.0,
+
+            "BsmVad_^_EmoLex_glob_negative_most_word_v": 0.0, "BsmVad_^_EmoLex_glob_negative_most_word_a": 0.0,
+            "BsmVad_^_EmoLex_glob_negative_most_word_d": 0.0, 
+
+            'BsmVad_^_EmoLex_glob_posneg_v_ratio': 0.0, 'BsmVad_^_EmoLex_glob_posneg_a_ratio': 0.0, 
+            'BsmVad_^_EmoLex_glob_posneg_d_ratio': 0.0, 
+
+            'BsmVad_^_EmoLex_glob_posneg_v_ratio_uniq': 0.0, 'BsmVad_^_EmoLex_glob_posneg_a_ratio_uniq': 0.0, 
+            'BsmVad_^_EmoLex_glob_posneg_d_ratio_uniq': 0.0, 
+
+
+            'BsmVad_^_MPQA_glob_positive_words_v_mean': 0.0, 'BsmVad_^_MPQA_glob_positive_words_v_std': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_a_mean': 0.0, 'BsmVad_^_MPQA_glob_positive_words_a_std': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_d_mean': 0.0, 'BsmVad_^_MPQA_glob_positive_words_d_std': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_v_mean_uniq': 0.0, 'BsmVad_^_MPQA_glob_positive_words_v_std_uniq': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_a_mean_uniq': 0.0, 'BsmVad_^_MPQA_glob_positive_words_a_std_uniq': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_d_mean_uniq': 0.0, 'BsmVad_^_MPQA_glob_positive_words_d_std_uniq': 0.0,
+
+            "BsmVad_^_MPQA_glob_positive_max_word_v": 0.0, "BsmVad_^_MPQA_glob_positive_max_word_a": 0.0,
+            "BsmVad_^_MPQA_glob_positive_max_word_d": 0.0, 
+            
+            "BsmVad_^_MPQA_glob_positive_min_word_v": 0.0,
+            "BsmVad_^_MPQA_glob_positive_min_word_a": 0.0, "BsmVad_^_MPQA_glob_positive_min_word_d": 0.0,
+
+            "BsmVad_^_MPQA_glob_positive_most_word_v": 0.0, "BsmVad_^_MPQA_glob_positive_most_word_a": 0.0,
+            "BsmVad_^_MPQA_glob_positive_most_word_d": 0.0,
+
+            'BsmVad_^_MPQA_glob_positive_words_v_mean': 0.0, 'BsmVad_^_MPQA_glob_positive_words_v_std': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_a_mean': 0.0, 'BsmVad_^_MPQA_glob_positive_words_a_std': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_d_mean': 0.0, 'BsmVad_^_MPQA_glob_positive_words_d_std': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_v_mean_uniq': 0.0, 'BsmVad_^_MPQA_glob_positive_words_v_std_uniq': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_a_mean_uniq': 0.0, 'BsmVad_^_MPQA_glob_positive_words_a_std_uniq': 0.0,
+            'BsmVad_^_MPQA_glob_positive_words_d_mean_uniq': 0.0, 'BsmVad_^_MPQA_glob_positive_words_d_std_uniq': 0.0,
+
+            "BsmVad_^_MPQA_glob_negative_max_word_v": 0.0, "BsmVad_^_MPQA_glob_negative_max_word_a": 0.0,
+            "BsmVad_^_MPQA_glob_negative_max_word_d": 0.0, 
+            
+            "BsmVad_^_MPQA_glob_negative_min_word_v": 0.0,
+            "BsmVad_^_MPQA_glob_negative_min_word_a": 0.0, "BsmVad_^_MPQA_glob_negative_min_word_d": 0.0,
+
+            "BsmVad_^_MPQA_glob_negative_most_word_v": 0.0, "BsmVad_^_MPQA_glob_negative_most_word_a": 0.0,
+            "BsmVad_^_MPQA_glob_negative_most_word_d": 0.0, 
+
+            'BsmVad_^_MPQA_glob_posneg_v_ratio': 0.0, 'BsmVad_^_MPQA_glob_posneg_a_ratio': 0.0, 
+            'BsmVad_^_MPQA_glob_posneg_d_ratio': 0.0, 
+
+            'BsmVad_^_MPQA_glob_posneg_v_ratio_uniq': 0.0, 'BsmVad_^_MPQA_glob_posneg_a_ratio_uniq': 0.0, 
+            'BsmVad_^_MPQA_glob_posneg_d_ratio_uniq': 0.0, 
+
+            'EmoVad_^_EmoLex_positive_words_v_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_stds_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_std_uniqs_std': 0.0,
+
+            "EmoVAD_^_EmoLex_positive_max_word_v_mean": 0.0, "EmoVAD_^_EmoLex_positive_max_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_positive_max_word_a_mean": 0.0, "EmoVAD_^_EmoLex_positive_max_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_positive_max_word_d_mean": 0.0, "EmoVAD_^_EmoLex_positive_max_word_d_std": 0.0, 
+            
+            "EmoVAD_^_EmoLex_positive_min_word_v_mean": 0.0, "EmoVAD_^_EmoLex_positive_min_word_v_std": 0.0,
+            "EmoVAD_^_EmoLex_positive_min_word_a_mean": 0.0, "EmoVAD_^_EmoLex_positive_min_word_a_std": 0.0, 
+            "EmoVAD_^_EmoLex_positive_min_word_d_mean": 0.0, "EmoVAD_^_EmoLex_positive_min_word_d_std": 0.0,
+
+            "EmoVAD_^_EmoLex_positive_most_word_v_mean": 0.0, "EmoVAD_^_EmoLex_positive_most_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_positive_most_word_a_mean": 0.0, "EmoVAD_^_EmoLex_positive_most_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_positive_most_word_d_mean": 0.0, "EmoVAD_^_EmoLex_positive_most_word_d_std": 0.0,
+
+            'EmoVad_^_EmoLex_positive_words_v_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_a_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_std_uniqs_std': 0.0,
+
+            "EmoVAD_^_EmoLex_negative_max_word_v_mean": 0.0, "EmoVAD_^_EmoLex_negative_max_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_negative_max_word_a_mean": 0.0, "EmoVAD_^_EmoLex_negative_max_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_negative_max_word_d_mean": 0.0, "EmoVAD_^_EmoLex_negative_max_word_d_std": 0.0, 
+            
+            "EmoVAD_^_EmoLex_negative_min_word_v_mean": 0.0, "EmoVAD_^_EmoLex_negative_min_word_v_std": 0.0,
+            "EmoVAD_^_EmoLex_negative_min_word_a_mean": 0.0, "EmoVAD_^_EmoLex_negative_min_word_a_std": 0.0, 
+            "EmoVAD_^_EmoLex_negative_min_word_d_mean": 0.0, "EmoVAD_^_EmoLex_negative_min_word_d_std": 0.0,
+
+            "EmoVAD_^_EmoLex_negative_most_word_v_mean": 0.0, "EmoVAD_^_EmoLex_negative_most_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_negative_most_word_a_mean": 0.0, "EmoVAD_^_EmoLex_negative_most_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_negative_most_word_d_mean": 0.0, "EmoVAD_^_EmoLex_negative_most_word_d_std": 0.0, 
+
+            'EmoVad_^_EmoLex_posneg_v_ratios_mean': 0.0, 'EmoVad_^_EmoLex_posneg_v_ratios_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_a_ratios_mean': 0.0, 'EmoVad_^_EmoLex_posneg_a_ratios_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_d_ratios_mean': 0.0, 'EmoVad_^_EmoLex_posneg_d_ratios_std': 0.0, 
+
+            'EmoVad_^_EmoLex_posneg_v_ratio_uniq_mean': 0.0, 'EmoVad_^_EmoLex_posneg_v_ratio_uniq_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_a_ratio_uniq_mean': 0.0, 'EmoVad_^_EmoLex_posneg_a_ratio_uniq_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_d_ratio_uniq_mean': 0.0, 'EmoVad_^_EmoLex_posneg_d_ratio_uniq_std': 0.0, 
+
+
+
+            'EmoVad_^_MPQA_positive_words_v_means_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_means_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_v_stds_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_stds_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_a_means_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_means_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_a_stds_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_stds_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_d_means_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_means_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_d_stds_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_stds_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_v_mean_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_mean_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_v_std_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_std_uniqs_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_a_mean_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_mean_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_a_std_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_std_uniqs_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_d_mean_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_mean_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_d_std_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_std_uniqs_std': 0.0,
+
+            "EmoVAD_^_MPQA_positive_max_word_v_mean": 0.0, "EmoVAD_^_MPQA_positive_max_word_v_std": 0.0, 
+            "EmoVAD_^_MPQA_positive_max_word_a_mean": 0.0, "EmoVAD_^_MPQA_positive_max_word_a_std": 0.0,
+            "EmoVAD_^_MPQA_positive_max_word_d_mean": 0.0, "EmoVAD_^_MPQA_positive_max_word_d_std": 0.0, 
+            
+            "EmoVAD_^_MPQA_positive_min_word_v_mean": 0.0, "EmoVAD_^_MPQA_positive_min_word_v_std": 0.0,
+            "EmoVAD_^_MPQA_positive_min_word_a_mean": 0.0, "EmoVAD_^_MPQA_positive_min_word_a_std": 0.0, 
+            "EmoVAD_^_MPQA_positive_min_word_d_mean": 0.0, "EmoVAD_^_MPQA_positive_min_word_d_std": 0.0,
+
+            "EmoVAD_^_MPQA_positive_most_word_v_mean": 0.0, "EmoVAD_^_MPQA_positive_most_word_v_std": 0.0, 
+            "EmoVAD_^_MPQA_positive_most_word_a_mean": 0.0, "EmoVAD_^_MPQA_positive_most_word_a_std": 0.0,
+            "EmoVAD_^_MPQA_positive_most_word_d_mean": 0.0, "EmoVAD_^_MPQA_positive_most_word_d_std": 0.0,
+
+            'EmoVad_^_MPQA_positive_words_v_means_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_means_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_v_stds_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_stds_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_a_means_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_means_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_a_stds_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_stds_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_d_means_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_means_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_d_stds_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_stds_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_v_mean_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_mean_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_v_std_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_v_std_uniqs_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_a_mean_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_mean_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_a_std_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_a_std_uniqs_std': 0.0,
+            'EmoVad_^_MPQA_positive_words_d_mean_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_mean_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_positive_words_d_std_uniqs_mean': 0.0, 'EmoVad_^_MPQA_positive_words_d_std_uniqs_std': 0.0,
+
+            "EmoVAD_^_MPQA_negative_max_word_v_mean": 0.0, "EmoVAD_^_MPQA_negative_max_word_v_std": 0.0, 
+            "EmoVAD_^_MPQA_negative_max_word_a_mean": 0.0, "EmoVAD_^_MPQA_negative_max_word_a_std": 0.0,
+            "EmoVAD_^_MPQA_negative_max_word_d_mean": 0.0, "EmoVAD_^_MPQA_negative_max_word_d_std": 0.0, 
+            
+            "EmoVAD_^_MPQA_negative_min_word_v_mean": 0.0, "EmoVAD_^_MPQA_negative_min_word_v_std": 0.0,
+            "EmoVAD_^_MPQA_negative_min_word_a_mean": 0.0, "EmoVAD_^_MPQA_negative_min_word_a_std": 0.0, 
+            "EmoVAD_^_MPQA_negative_min_word_d_mean": 0.0, "EmoVAD_^_MPQA_negative_min_word_d_std": 0.0,
+
+            "EmoVAD_^_MPQA_negative_most_word_v_mean": 0.0, "EmoVAD_^_MPQA_negative_most_word_v_std": 0.0, 
+            "EmoVAD_^_MPQA_negative_most_word_a_mean": 0.0, "EmoVAD_^_MPQA_negative_most_word_a_std": 0.0,
+            "EmoVAD_^_MPQA_negative_most_word_d_mean": 0.0, "EmoVAD_^_MPQA_negative_most_word_d_std": 0.0, 
+
+            'EmoVad_^_MPQA_posneg_v_ratios_mean': 0.0, 'EmoVad_^_MPQA_posneg_v_ratios_std': 0.0, 
+            'EmoVad_^_MPQA_posneg_a_ratios_mean': 0.0, 'EmoVad_^_MPQA_posneg_a_ratios_std': 0.0, 
+            'EmoVad_^_MPQA_posneg_d_ratios_mean': 0.0, 'EmoVad_^_MPQA_posneg_d_ratios_std': 0.0, 
+
+            'EmoVad_^_MPQA_posneg_v_ratio_uniqs_mean': 0.0, 'EmoVad_^_MPQA_posneg_v_ratio_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_posneg_a_ratio_uniqs_mean': 0.0, 'EmoVad_^_MPQA_posneg_a_ratio_uniqs_std': 0.0, 
+            'EmoVad_^_MPQA_posneg_d_ratio_uniqs_mean': 0.0, 'EmoVad_^_MPQA_posneg_d_ratio_uniqs_std': 0.0, 
+
+
+            'EmoVad_^_EmoLex_positive_words_v_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_a_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_std_uniqs_std': 0.0,
+
+            "EmoVAD_^_EmoLex_positive_max_word_v_mean": 0.0, "EmoVAD_^_EmoLex_positive_max_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_positive_max_word_a_mean": 0.0, "EmoVAD_^_EmoLex_positive_max_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_positive_max_word_d_mean": 0.0, "EmoVAD_^_EmoLex_positive_max_word_d_std": 0.0, 
+            
+            "EmoVAD_^_EmoLex_positive_min_word_v_mean": 0.0, "EmoVAD_^_EmoLex_positive_min_word_v_std": 0.0,
+            "EmoVAD_^_EmoLex_positive_min_word_a_mean": 0.0, "EmoVAD_^_EmoLex_positive_min_word_a_std": 0.0, 
+            "EmoVAD_^_EmoLex_positive_min_word_d_mean": 0.0, "EmoVAD_^_EmoLex_positive_min_word_d_std": 0.0,
+
+            "EmoVAD_^_EmoLex_positive_most_word_v_mean": 0.0, "EmoVAD_^_EmoLex_positive_most_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_positive_most_word_a_mean": 0.0, "EmoVAD_^_EmoLex_positive_most_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_positive_most_word_d_mean": 0.0, "EmoVAD_^_EmoLex_positive_most_word_d_std": 0.0,
+
+            'EmoVad_^_EmoLex_positive_words_v_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_a_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_means_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_means_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_stds_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_stds_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_v_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_v_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_a_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_a_std_uniqs_std': 0.0,
+            'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_mean_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_positive_words_d_std_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_positive_words_d_std_uniqs_std': 0.0,
+
+            "EmoVAD_^_EmoLex_negative_max_word_v_mean": 0.0, "EmoVAD_^_EmoLex_negative_max_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_negative_max_word_a_mean": 0.0, "EmoVAD_^_EmoLex_negative_max_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_negative_max_word_d_mean": 0.0, "EmoVAD_^_EmoLex_negative_max_word_d_std": 0.0, 
+            
+            "EmoVAD_^_EmoLex_negative_min_word_v_mean": 0.0, "EmoVAD_^_EmoLex_negative_min_word_v_std": 0.0,
+            "EmoVAD_^_EmoLex_negative_min_word_a_mean": 0.0, "EmoVAD_^_EmoLex_negative_min_word_a_std": 0.0, 
+            "EmoVAD_^_EmoLex_negative_min_word_d_mean": 0.0, "EmoVAD_^_EmoLex_negative_min_word_d_std": 0.0,
+
+            "EmoVAD_^_EmoLex_negative_most_word_v_mean": 0.0, "EmoVAD_^_EmoLex_negative_most_word_v_std": 0.0, 
+            "EmoVAD_^_EmoLex_negative_most_word_a_mean": 0.0, "EmoVAD_^_EmoLex_negative_most_word_a_std": 0.0,
+            "EmoVAD_^_EmoLex_negative_most_word_d_mean": 0.0, "EmoVAD_^_EmoLex_negative_most_word_d_std": 0.0, 
+
+            'EmoVad_^_EmoLex_posneg_v_ratios_mean': 0.0, 'EmoVad_^_EmoLex_posneg_v_ratios_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_a_ratios_mean': 0.0, 'EmoVad_^_EmoLex_posneg_a_ratios_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_d_ratios_mean': 0.0, 'EmoVad_^_EmoLex_posneg_d_ratios_std': 0.0, 
+
+            'EmoVad_^_EmoLex_posneg_v_ratio_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_posneg_v_ratio_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_a_ratio_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_posneg_a_ratio_uniqs_std': 0.0, 
+            'EmoVad_^_EmoLex_posneg_d_ratio_uniqs_mean': 0.0, 'EmoVad_^_EmoLex_posneg_d_ratio_uniqs_std': 0.0, 
+
+
+            'BsmVad_^_EmoLex_positive_words_v_means_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_means_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_v_stds_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_stds_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_a_means_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_means_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_a_stds_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_stds_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_d_means_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_means_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_d_stds_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_stds_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_v_mean_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_mean_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_v_std_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_std_uniqs_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_a_mean_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_mean_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_a_std_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_std_uniqs_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_d_mean_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_mean_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_d_std_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_std_uniqs_std': 0.0,
+
+            "BsmVad_^_EmoLex_positive_max_word_v_mean": 0.0, "BsmVad_^_EmoLex_positive_max_word_v_std": 0.0, 
+            "BsmVad_^_EmoLex_positive_max_word_a_mean": 0.0, "BsmVad_^_EmoLex_positive_max_word_a_std": 0.0,
+            "BsmVad_^_EmoLex_positive_max_word_d_mean": 0.0, "BsmVad_^_EmoLex_positive_max_word_d_std": 0.0, 
+            
+            "BsmVad_^_EmoLex_positive_min_word_v_mean": 0.0, "BsmVad_^_EmoLex_positive_min_word_v_std": 0.0,
+            "BsmVad_^_EmoLex_positive_min_word_a_mean": 0.0, "BsmVad_^_EmoLex_positive_min_word_a_std": 0.0, 
+            "BsmVad_^_EmoLex_positive_min_word_d_mean": 0.0, "BsmVad_^_EmoLex_positive_min_word_d_std": 0.0,
+
+            "BsmVad_^_EmoLex_positive_most_word_v_mean": 0.0, "BsmVad_^_EmoLex_positive_most_word_v_std": 0.0, 
+            "BsmVad_^_EmoLex_positive_most_word_a_mean": 0.0, "BsmVad_^_EmoLex_positive_most_word_a_std": 0.0,
+            "BsmVad_^_EmoLex_positive_most_word_d_mean": 0.0, "BsmVad_^_EmoLex_positive_most_word_d_std": 0.0,
+
+            'BsmVad_^_EmoLex_positive_words_v_means_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_means_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_v_stds_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_stds_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_a_means_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_means_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_a_stds_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_stds_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_d_means_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_means_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_d_stds_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_stds_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_v_mean_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_mean_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_v_std_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_v_std_uniqs_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_a_mean_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_mean_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_a_std_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_a_std_uniqs_std': 0.0,
+            'BsmVad_^_EmoLex_positive_words_d_mean_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_mean_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_positive_words_d_std_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_positive_words_d_std_uniqs_std': 0.0,
+
+            "BsmVad_^_EmoLex_negative_max_word_v_mean": 0.0, "BsmVad_^_EmoLex_negative_max_word_v_std": 0.0, 
+            "BsmVad_^_EmoLex_negative_max_word_a_mean": 0.0, "BsmVad_^_EmoLex_negative_max_word_a_std": 0.0,
+            "BsmVad_^_EmoLex_negative_max_word_d_mean": 0.0, "BsmVad_^_EmoLex_negative_max_word_d_std": 0.0, 
+            
+            "BsmVad_^_EmoLex_negative_min_word_v_mean": 0.0, "BsmVad_^_EmoLex_negative_min_word_v_std": 0.0,
+            "BsmVad_^_EmoLex_negative_min_word_a_mean": 0.0, "BsmVad_^_EmoLex_negative_min_word_a_std": 0.0, 
+            "BsmVad_^_EmoLex_negative_min_word_d_mean": 0.0, "BsmVad_^_EmoLex_negative_min_word_d_std": 0.0,
+
+            "BsmVad_^_EmoLex_negative_most_word_v_mean": 0.0, "BsmVad_^_EmoLex_negative_most_word_v_std": 0.0, 
+            "BsmVad_^_EmoLex_negative_most_word_a_mean": 0.0, "BsmVad_^_EmoLex_negative_most_word_a_std": 0.0,
+            "BsmVad_^_EmoLex_negative_most_word_d_mean": 0.0, "BsmVad_^_EmoLex_negative_most_word_d_std": 0.0, 
+
+            'BsmVad_^_EmoLex_posneg_v_ratios_mean': 0.0, 'BsmVad_^_EmoLex_posneg_v_ratios_std': 0.0, 
+            'BsmVad_^_EmoLex_posneg_a_ratios_mean': 0.0, 'BsmVad_^_EmoLex_posneg_a_ratios_std': 0.0, 
+            'BsmVad_^_EmoLex_posneg_d_ratios_mean': 0.0, 'BsmVad_^_EmoLex_posneg_d_ratios_std': 0.0, 
+
+            'BsmVad_^_EmoLex_posneg_v_ratio_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_posneg_v_ratio_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_posneg_a_ratio_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_posneg_a_ratio_uniqs_std': 0.0, 
+            'BsmVad_^_EmoLex_posneg_d_ratio_uniqs_mean': 0.0, 'BsmVad_^_EmoLex_posneg_d_ratio_uniqs_std': 0.0, 
+
+
+            'BsmVad_^_MPQA_positive_words_v_means_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_means_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_v_stds_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_stds_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_a_means_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_means_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_a_stds_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_stds_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_d_means_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_means_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_d_stds_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_stds_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_v_mean_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_mean_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_v_std_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_std_uniqs_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_a_mean_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_mean_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_a_std_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_std_uniqs_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_d_mean_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_mean_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_d_std_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_std_uniqs_std': 0.0,
+
+            "BsmVad_^_MPQA_positive_max_word_v_mean": 0.0, "BsmVad_^_MPQA_positive_max_word_v_std": 0.0, 
+            "BsmVad_^_MPQA_positive_max_word_a_mean": 0.0, "BsmVad_^_MPQA_positive_max_word_a_std": 0.0,
+            "BsmVad_^_MPQA_positive_max_word_d_mean": 0.0, "BsmVad_^_MPQA_positive_max_word_d_std": 0.0, 
+            
+            "BsmVad_^_MPQA_positive_min_word_v_mean": 0.0, "BsmVad_^_MPQA_positive_min_word_v_std": 0.0,
+            "BsmVad_^_MPQA_positive_min_word_a_mean": 0.0, "BsmVad_^_MPQA_positive_min_word_a_std": 0.0, 
+            "BsmVad_^_MPQA_positive_min_word_d_mean": 0.0, "BsmVad_^_MPQA_positive_min_word_d_std": 0.0,
+
+            "BsmVad_^_MPQA_positive_most_word_v_mean": 0.0, "BsmVad_^_MPQA_positive_most_word_v_std": 0.0, 
+            "BsmVad_^_MPQA_positive_most_word_a_mean": 0.0, "BsmVad_^_MPQA_positive_most_word_a_std": 0.0,
+            "BsmVad_^_MPQA_positive_most_word_d_mean": 0.0, "BsmVad_^_MPQA_positive_most_word_d_std": 0.0,
+
+            'BsmVad_^_MPQA_positive_words_v_means_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_means_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_v_stds_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_stds_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_a_means_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_means_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_a_stds_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_stds_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_d_means_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_means_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_d_stds_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_stds_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_v_mean_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_mean_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_v_std_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_v_std_uniqs_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_a_mean_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_mean_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_a_std_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_a_std_uniqs_std': 0.0,
+            'BsmVad_^_MPQA_positive_words_d_mean_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_mean_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_positive_words_d_std_uniqs_mean': 0.0, 'BsmVad_^_MPQA_positive_words_d_std_uniqs_std': 0.0,
+
+            "BsmVad_^_MPQA_negative_max_word_v_mean": 0.0, "BsmVad_^_MPQA_negative_max_word_v_std": 0.0, 
+            "BsmVad_^_MPQA_negative_max_word_a_mean": 0.0, "BsmVad_^_MPQA_negative_max_word_a_std": 0.0,
+            "BsmVad_^_MPQA_negative_max_word_d_mean": 0.0, "BsmVad_^_MPQA_negative_max_word_d_std": 0.0, 
+            
+            "BsmVad_^_MPQA_negative_min_word_v_mean": 0.0, "BsmVad_^_MPQA_negative_min_word_v_std": 0.0,
+            "BsmVad_^_MPQA_negative_min_word_a_mean": 0.0, "BsmVad_^_MPQA_negative_min_word_a_std": 0.0, 
+            "BsmVad_^_MPQA_negative_min_word_d_mean": 0.0, "BsmVad_^_MPQA_negative_min_word_d_std": 0.0,
+
+            "BsmVad_^_MPQA_negative_most_word_v_mean": 0.0, "BsmVad_^_MPQA_negative_most_word_v_std": 0.0, 
+            "BsmVad_^_MPQA_negative_most_word_a_mean": 0.0, "BsmVad_^_MPQA_negative_most_word_a_std": 0.0,
+            "BsmVad_^_MPQA_negative_most_word_d_mean": 0.0, "BsmVad_^_MPQA_negative_most_word_d_std": 0.0, 
+
+            'BsmVad_^_MPQA_posneg_v_ratios_mean': 0.0, 'BsmVad_^_MPQA_posneg_v_ratios_std': 0.0, 
+            'BsmVad_^_MPQA_posneg_a_ratios_mean': 0.0, 'BsmVad_^_MPQA_posneg_a_ratios_std': 0.0, 
+            'BsmVad_^_MPQA_posneg_d_ratios_mean': 0.0, 'BsmVad_^_MPQA_posneg_d_ratios_std': 0.0, 
+
+            'BsmVad_^_MPQA_posneg_v_ratio_uniqs_mean': 0.0, 'BsmVad_^_MPQA_posneg_v_ratio_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_posneg_a_ratio_uniqs_mean': 0.0, 'BsmVad_^_MPQA_posneg_a_ratio_uniqs_std': 0.0, 
+            'BsmVad_^_MPQA_posneg_d_ratio_uniqs_mean': 0.0, 'BsmVad_^_MPQA_posneg_d_ratio_uniqs_std': 0.0, 
