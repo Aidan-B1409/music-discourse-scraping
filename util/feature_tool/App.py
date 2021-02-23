@@ -10,6 +10,7 @@ import bsmvad_wlist
 import mpqa_wlist
 import emolex_wlist
 import emoaff_wlist
+import multidataset_wlist
 from FeatureGenerator import FeatureGenerator
 from analysis import analyze_features
 
@@ -23,7 +24,7 @@ class App:
 
     m_features = {'Song_ID': "", 'Song_Name': "", 'n_words': -1, 'comment_length_stdev': -1, 'Song_Artist': "",
      'existing_valence': "", 'existing_arousal': "", 'n_words_uniq': -1, 'n_comments': -1, 'comment_length_mean': -1}
-    wordlists = {EmoVAD_wlist, bsmvad_wlist, mpqa_wlist, emolex_wlist, emoaff_wlist}
+    wordlists = {EmoVAD_wlist, bsmvad_wlist, mpqa_wlist, emolex_wlist, emoaff_wlist, multidataset_wlist}
     for wlist in wordlists:
         m_features.update(wlist.get_header())
     

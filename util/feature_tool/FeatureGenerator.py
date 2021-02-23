@@ -33,7 +33,7 @@ class FeatureGenerator:
         wlists.append(MPQA_wlist(getcwd() + '/wordlists/' + self.list_paths['MPQA']))
         wlists.append(EmoLex_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoLex']))
         wlists.append(EmoAff_wlist(getcwd() + '/wordlists/' + self.list_paths['EmoAff']))
-        # wlists.append(MultiDataset_wlist(self.list_paths))
+        wlists.append(MultiDataset_wlist(self.list_paths))
         return wlists
 
     def get_features(self) -> dict:
