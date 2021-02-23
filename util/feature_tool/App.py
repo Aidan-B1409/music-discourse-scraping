@@ -1,9 +1,12 @@
-from bsmvad_wlist import BSMVAD_wlist
 import pandas as pd
 import csv
-import os
+import sys
+import threading
 from os import walk
+from queue import Queue
 from datetime import datetime
+from tqdm import tqdm
+import yappi
 
 import EmoVAD_wlist
 import bsmvad_wlist
@@ -20,6 +23,8 @@ from analysis import analyze_features
 # wordlist_df -- The dataframe holding the semantic wordlist
 # word_df -- A wordlist which holds each unique comment in the glob/comment and its # of occurances 
 # glob -- The concatanation 
+MAX_THREAD = 16
+
 class App:
 
     m_features = {'Song_ID': "", 'Song_Name': "", 'n_words': -1, 'comment_length_stdev': -1, 'Song_Artist': "",
@@ -43,14 +48,61 @@ class App:
         with open(data_csv_name, 'w', newline='', encoding='utf-8') as csvfile:
             csvwriter = csv.DictWriter(csvfile, self.m_features.keys())
             csvwriter.writeheader()
-            for song_df in self.song_csv_generator():
-                features = FeatureGenerator(song_df).get_features()
-                csvwriter.writerow(features)
 
-        # after we finish generating all our features - do some simple analysis
-        analysis_csv_name = "feature_analysis" + timestamp + ".csv"
-        analyze_features(data_csv_name, analysis_csv_name, self.m_features)
+            # Spin up threads
+            queue = Queue()
+            sigkill = threading.Event()
+
+            for song_df in self.song_csv_generator():
+                queue.put(song_df)
+
+            pbar = tqdm(total = queue.qsize())            
+            try:
+                yappi.start()
+                # generator_thread = threading.Thread(target=self.buildqueue, args=(queue, ))
+                wthreads = [threading.Thread(target=self.thread_func, args=(queue, csvwriter, sigkill, pbar)) for t in range(MAX_THREAD)]
+                # generator_thread.start()
+                [thread.start() for thread in wthreads]
+                # generator_thread.join()
+                [thread.join() for thread in wthreads] 
+
+                pbar.close()  
+                yappi.stop()
+
+                 # after we finish generating all our features - do some simple analysis
+                analysis_csv_name = "feature_analysis" + timestamp + ".csv"
+                analyze_features(data_csv_name, analysis_csv_name, self.m_features)  
+
+                with open('out.txt', 'w') as f:
+                    ythreads = yappi.get_thread_stats()
+                    for thread in ythreads:
+                        f.write("Function stats for (%s) (%d): \n" % (thread.name, thread.id))
+                        yappi.get_func_stats(ctx_id=thread.id).print_all(out = f)
+
+            except KeyboardInterrupt as e:
+                print(f"Interrupt {e} Recieved - Killing Threads")
+                sigkill.set()
+                yappi.stop()
+                pbar.close()
+
+    def thread_func(self, queue, csvwriter, sigkill, pbar):
+        while not queue.empty():
+            song_df = queue.get()
+            queue.task_done()
+            if song_df.empty:
+                continue
+            features = FeatureGenerator(song_df, sigkill).get_features()
+            if sigkill.wait(0):
+                print("killing threads here")
+                sys.kill()
+            pbar.update()
+            csvwriter.writerow(features)
+
+
+    def buildqueue(self, queue):
+        pass
+
 
 if __name__ == "__main__":
-    fe = App(comment_path="/mnt/g/new_data/subset_deezer_test")
+    fe = App(comment_path="/mnt/g/smaller_data_subset/")
     fe.main()

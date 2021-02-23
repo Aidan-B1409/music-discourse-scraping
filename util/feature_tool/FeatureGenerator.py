@@ -4,10 +4,10 @@ from EmoVAD_wlist import EmoVAD_wlist
 from bsmvad_wlist import BSMVAD_wlist
 from mpqa_wlist import MPQA_wlist
 from emolex_wlist import EmoLex_wlist
-import pandas as pd
 from meta_generator import MetaGenerator
 from glob_maker import make_glob
 from os import getcwd
+import sys
 
 class FeatureGenerator:
 
@@ -21,10 +21,11 @@ class FeatureGenerator:
         "MPQA": "MPQA_sentiment.csv"
     }
 
-    def __init__(self, song_df) -> None:
+    def __init__(self, song_df, event) -> None:
         self.wordlists = self._build_wordlists()
         self.song_df = song_df
         self.glob_df = make_glob(song_df)
+        self.event = event
 
     def _build_wordlists(self) -> list:
         wlists = []
@@ -42,8 +43,12 @@ class FeatureGenerator:
         # Nasty side effect, but it's the best way to shoehorn that into the pipeline without getting inaccurate n_comment readings. 
         features.update(MetaGenerator(self.song_df, self.glob_df).get_features())
         for wlist in self.wordlists:
+            if self.event.wait(0):
+                sys.exit()
             features.update(wlist.wordlevel_analysis(self.song_df, self.glob_df))
             for i, row in enumerate(self.song_df['Comment Body']):
+                if self.event.wait(0):
+                    sys.exit()
                 wlist.process_comment(i, row)
             features.update(wlist.analyze_comments())
         return features
