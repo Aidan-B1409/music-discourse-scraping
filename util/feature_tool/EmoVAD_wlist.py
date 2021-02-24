@@ -137,6 +137,7 @@ class EmoVAD_wlist:
     def _ratio(self, series, threshold):
         return sum(n > threshold for n in series) / sum(n < threshold for n in series)
 
+
     def _write_ratio(self, dict, write_key, series_key, threshold, df):
         dict[f"{write_key}_ratio"] = self._ratio(df[series_key], threshold)
 

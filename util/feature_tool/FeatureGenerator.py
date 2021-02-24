@@ -12,19 +12,18 @@ import time
 
 class FeatureGenerator:
 
-    def __init__(self, song_df, event, wordlists) -> None:
+    def __init__(self, song_df, wordlists) -> None:
         self.wordlists = wordlists
         self.song_df = song_df
         self.glob_df = make_glob(song_df)
-        self.event = event
 
     def _build_wordlists(self) -> list:
         wlists = []
-        wlists.append(EmoVAD_wlist(self.wordlists['EmoVAD']))
-        wlists.append(BSMVAD_wlist(self.wordlists['ANEW_Extended']))
-        wlists.append(MPQA_wlist(self.wordlists['MPQA']))
-        wlists.append(EmoLex_wlist(self.wordlists['EmoLex']))
-        wlists.append(EmoAff_wlist(self.wordlists['EmoAff']))
+        wlists.append(EmoVAD_wlist(self.wordlists['EmoVAD'].copy()))
+        wlists.append(BSMVAD_wlist(self.wordlists['ANEW_Extended'].copy()))
+        wlists.append(MPQA_wlist(self.wordlists['MPQA'].copy()))
+        wlists.append(EmoLex_wlist(self.wordlists['EmoLex'].copy()))
+        wlists.append(EmoAff_wlist(self.wordlists['EmoAff'].copy()))
         wlists.append(MultiDataset_wlist(self.wordlists))
         return wlists
 
@@ -36,15 +35,11 @@ class FeatureGenerator:
         
         for wlist in self._build_wordlists():
             wordlist_tic = time.perf_counter()
-            if self.event.wait(0):
-                sys.exit()
             features.update(wlist.wordlevel_analysis(self.song_df, self.glob_df))
-            # for i, row in enumerate(self.song_df['Comment Body']):
-            #     if self.event.wait(0):
-            #         sys.exit()
-            #     wlist.process_comment(i, row)
-            # features.update(wlist.analyze_comments())
+            for i, row in enumerate(self.song_df['Comment Body']):
+                wlist.process_comment(i, row)
+            features.update(wlist.analyze_comments())
             wordlist_toc = time.perf_counter()
-            print(f'wordlist {wlist} generation time: {wordlist_toc - wordlist_tic}\n')
+            #print(f'wordlist {wlist} generation time: {wordlist_toc - wordlist_tic}\n')
         return features
 

@@ -27,12 +27,14 @@ def ratio(series, threshold):
 
 
 # Find the intersection between a wordlist and a comment df - preserving duplicates for the sake of means. 
+# TODO - hotspot??
 def unsquished_intersection(song_df, wordlist_df) -> pd.DataFrame:
     semantic_wordbag_df = pd.merge(make_unsquished_glob(song_df), wordlist_df, on='Word')
     return semantic_wordbag_df
 
 
 # Find the intersecton between a wordglob (formed from comment df) and a wordlist 
+# TODO - hotspot? 
 def glob_intersection(glob_df, wordlist_df) -> pd.DataFrame:
     semantic_word_df = pd.merge(glob_df, wordlist_df, on='Word')
     return semantic_word_df

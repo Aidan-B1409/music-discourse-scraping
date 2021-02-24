@@ -62,10 +62,10 @@ class MultiDataset_wlist:
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()
 
-        self.emovad_df = wordlists['EmoVAD']
-        self.emolex_df = wordlists['EmoLex']
-        self.mpqa_df = wordlists['MPQA']
-        self.bsmvad_df = wordlists['ANEW_Extended']
+        self.emovad_df = wordlists['EmoVAD'].copy()
+        self.emolex_df = wordlists['EmoLex'].copy()
+        self.mpqa_df = wordlists['MPQA'].copy()
+        self.bsmvad_df = wordlists['ANEW_Extended'].copy()
 
         columns = {'V.Mean.Sum': 'Valence',
                     'A.Mean.Sum': 'Arousal',

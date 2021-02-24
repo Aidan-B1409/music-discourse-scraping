@@ -19,6 +19,7 @@ import emolex_wlist
 import emoaff_wlist
 import multidataset_wlist
 from FeatureGenerator import FeatureGenerator
+from contextlib import redirect_stdout
 from analysis import analyze_features
 
 
@@ -64,8 +65,6 @@ class App:
             csvwriter.writeheader()
 
             queue = Queue()
-            sigkill = threading.Event()
-
             for song_fname in self.song_csv_generator():
                 queue.put(song_fname)
 
@@ -85,10 +84,11 @@ class App:
 
             # Spin up threads      
             try:
+                yappi.set_clock_type("wall")
                 yappi.start()
                 # generator_thread = threading.Thread(target=self.buildqueue, args=(queue, ))
                 wthreads = [threading.Thread(target=self.thread_func,
-                 args=(queue, csvwriter, sigkill, pbar, wordlists)) for t in range(MAX_THREAD)]
+                 args=(queue, csvwriter, pbar, wordlists)) for t in range(MAX_THREAD)]
                 # generator_thread.start()
                 [thread.start() for thread in wthreads]
                 # generator_thread.join()
@@ -102,20 +102,19 @@ class App:
                 analyze_features(data_csv_name, analysis_csv_name, self.m_features)  
 
                 with open('out.txt', 'w') as f:
-                    ythreads = yappi.get_thread_stats()
-                    for thread in ythreads:
-                        f.write("Function stats for (%s) (%d): \n" % (thread.name, thread.id))
-                        yappi.get_func_stats(ctx_id=thread.id).print_all(out = f)
+                    with redirect_stdout(f):
+                        ythreads = yappi.get_thread_stats()
+                        for thread in ythreads:
+                            f.write("Function stats for (%s) (%d): \n" % (thread.name, thread.id))
+                            yappi.get_func_stats(ctx_id=thread.id).debug_print()
 
             except KeyboardInterrupt as e:
                 print(f"Interrupt {e} Recieved - Killing Threads")
-                sigkill.set()
                 yappi.stop()
                 pbar.close()
 
-    def thread_func(self, queue, csvwriter, sigkill, pbar, wordlists):
+    def thread_func(self, queue, csvwriter, pbar, wordlists):
         while not queue.empty():
-
             song_fname = queue.get()
             queue.task_done()
 
@@ -124,9 +123,7 @@ class App:
             if song_df.empty:
                 continue
 
-            features = FeatureGenerator(song_df, sigkill, wordlists).get_features()
-            if sigkill.wait(0):
-                sys.exit()
+            features = FeatureGenerator(song_df, wordlists).get_features()
             pbar.update()
             csvwriter.writerow(features)
 
@@ -145,5 +142,5 @@ class App:
 
 
 if __name__ == "__main__":
-    fe = App(comment_path="/mnt/g/bigfiles_subset/")
+    fe = App(comment_path="/mnt/g/smaller_data_subset/")
     fe.main()
