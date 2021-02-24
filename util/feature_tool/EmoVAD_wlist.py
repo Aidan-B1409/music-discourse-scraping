@@ -37,7 +37,7 @@ def get_header():
 
 class EmoVAD_wlist:
 
-    def __init__(self, wlist_path: str) -> None:
+    def __init__(self, emovad_df) -> None:
 
         columns = []
         for datatype in ['v', 'a', 'd']:
@@ -49,7 +49,7 @@ class EmoVAD_wlist:
                 columns.append(f"{datatype}_{analysis}")
 
         self.comment_analysis_df = pd.DataFrame(columns=columns)
-        self.emovad_df = pd.read_csv(wlist_path, names=['Word','Valence','Arousal','Dominance'], skiprows=1,  sep='\t')
+        self.emovad_df = emovad_df
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()
 

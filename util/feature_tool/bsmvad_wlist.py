@@ -37,7 +37,7 @@ def get_header():
 
 class BSMVAD_wlist:
 
-    def __init__(self, wlist_path: str) -> None:
+    def __init__(self, bsmvad_df) -> None:
         columns = []
         for datatype in ['v', 'a', 'd']:
             for analysis in ['means', 'stds']:
@@ -48,13 +48,7 @@ class BSMVAD_wlist:
                 columns.append(f"{datatype}_{analysis}")
                 
         self.comment_analysis_df = pd.DataFrame(columns=columns)
-        self.bsmvad_df = pd.read_csv(wlist_path, encoding='utf-8', engine='python')
-        # drop unneeded columns
-        self.bsmvad_df.drop(self.bsmvad_df.iloc[:, 10:64].columns, axis = 1, inplace = True) 
-        self.bsmvad_df.drop(['V.Rat.Sum', 'A.Rat.Sum','D.Rat.Sum'], axis = 1, inplace = True) 
-        # drop blank rows, if any
-        self.bsmvad_df = self.bsmvad_df[self.bsmvad_df['Word'].notnull()]
-
+        self.bsmvad_df = bsmvad_df
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()
 

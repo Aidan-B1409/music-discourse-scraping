@@ -2,11 +2,15 @@ import pandas as pd
 import csv
 import sys
 import threading
+import yappi
+import time
+
 from os import walk
+from os import getcwd
 from queue import Queue
 from datetime import datetime
 from tqdm import tqdm
-import yappi
+
 
 import EmoVAD_wlist
 import bsmvad_wlist
@@ -27,6 +31,16 @@ MAX_THREAD = 16
 
 class App:
 
+    list_paths = {
+        "ANEW_Extended": "BRM-emot-submit.csv",
+        "ANEW_Ext_Condensed": "ANEW_EnglishShortened.csv",
+        "EmoLex": "NRC-Emotion-Lexicon-Wordlevel-v0.92.txt",
+        "EmoVAD": "NRC-VAD-Lexicon.txt",
+        "EmoAff": "NRC-AffectIntensity-Lexicon.txt",
+        "HSsent": "HS-unigrams.txt",
+        "MPQA": "MPQA_sentiment.csv"
+    }
+
     m_features = {'Song_ID': "", 'Song_Name': "", 'n_words': -1, 'comment_length_stdev': -1, 'Song_Artist': "",
      'existing_valence': "", 'existing_arousal': "", 'n_words_uniq': -1, 'n_comments': -1, 'comment_length_mean': -1}
     wordlists = {EmoVAD_wlist, bsmvad_wlist, mpqa_wlist, emolex_wlist, emoaff_wlist, multidataset_wlist}
@@ -40,7 +54,7 @@ class App:
         for subdir, dirs, files in walk(self.comment_path):
             for file in files:
                 fdir = subdir + "/" + file
-                yield pd.read_csv(fdir, encoding="utf-8", index_col = False, engine="c")
+                yield fdir
 
     def main(self) -> None:
         timestamp = datetime.now().strftime('%d-%m-%Y-%H-%M-%S')
@@ -49,18 +63,32 @@ class App:
             csvwriter = csv.DictWriter(csvfile, self.m_features.keys())
             csvwriter.writeheader()
 
-            # Spin up threads
             queue = Queue()
             sigkill = threading.Event()
 
-            for song_df in self.song_csv_generator():
-                queue.put(song_df)
+            for song_fname in self.song_csv_generator():
+                queue.put(song_fname)
 
-            pbar = tqdm(total = queue.qsize())            
+            pbar = tqdm(total = queue.qsize())      
+
+            wordlists = {
+                'EmoVAD': pd.read_csv(self._get_wlist_path(self.list_paths['EmoVAD']),
+                    names=['Word','Valence','Arousal','Dominance'], skiprows=1,  sep='\t'),
+                'EmoLex': pd.read_csv(self._get_wlist_path(self.list_paths['EmoLex']),
+                    names=['Word','Emotion','Association'], skiprows=1, sep='\t'), 
+                'EmoAff': pd.read_csv(self._get_wlist_path(self.list_paths['EmoAff']),
+                    names=['Word','Score','Affect'], skiprows=1, sep='\t', index_col=False), 
+                'ANEW_Extended': self._load_bsmvad(self._get_wlist_path(self.list_paths['ANEW_Extended'])),
+                'MPQA': pd.read_csv(self._get_wlist_path(self.list_paths['MPQA']),
+                    names=['Word','Sentiment'], skiprows=0)
+            }
+
+            # Spin up threads      
             try:
                 yappi.start()
                 # generator_thread = threading.Thread(target=self.buildqueue, args=(queue, ))
-                wthreads = [threading.Thread(target=self.thread_func, args=(queue, csvwriter, sigkill, pbar)) for t in range(MAX_THREAD)]
+                wthreads = [threading.Thread(target=self.thread_func,
+                 args=(queue, csvwriter, sigkill, pbar, wordlists)) for t in range(MAX_THREAD)]
                 # generator_thread.start()
                 [thread.start() for thread in wthreads]
                 # generator_thread.join()
@@ -85,24 +113,37 @@ class App:
                 yappi.stop()
                 pbar.close()
 
-    def thread_func(self, queue, csvwriter, sigkill, pbar):
+    def thread_func(self, queue, csvwriter, sigkill, pbar, wordlists):
         while not queue.empty():
-            song_df = queue.get()
+
+            song_fname = queue.get()
             queue.task_done()
+
+            song_df = pd.read_csv(song_fname, encoding="utf-8", index_col = False, engine="c")
+
             if song_df.empty:
                 continue
-            features = FeatureGenerator(song_df, sigkill).get_features()
+
+            features = FeatureGenerator(song_df, sigkill, wordlists).get_features()
             if sigkill.wait(0):
-                print("killing threads here")
-                sys.kill()
+                sys.exit()
             pbar.update()
             csvwriter.writerow(features)
 
+    def _get_wlist_path(self, key):
+        return getcwd() + '/wordlists/' + key
 
-    def buildqueue(self, queue):
-        pass
+    def _load_bsmvad(self, path) -> pd.DataFrame:
+        bsmvad_df = pd.read_csv(path, encoding='utf-8', engine='python')
+        # drop unneeded columns
+        bsmvad_df.drop(bsmvad_df.iloc[:, 10:64].columns, axis = 1, inplace = True) 
+        bsmvad_df.drop(['V.Rat.Sum', 'A.Rat.Sum','D.Rat.Sum'], axis = 1, inplace = True) 
+        # drop blank rows, if any
+        bsmvad_df = bsmvad_df[bsmvad_df['Word'].notnull()]
+        return bsmvad_df
+
 
 
 if __name__ == "__main__":
-    fe = App(comment_path="/mnt/g/subset_deezer_test/")
+    fe = App(comment_path="/mnt/g/smaller_data_subset/")
     fe.main()

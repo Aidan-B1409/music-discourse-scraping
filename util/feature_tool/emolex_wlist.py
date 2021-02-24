@@ -39,7 +39,7 @@ def get_header():
 
 class EmoLex_wlist:
 
-    def __init__(self, wlist_path: str) -> None:
+    def __init__(self, emolex_df) -> None:
         columns = []
         for datatype in iteraffects():
             for uniq_status in ['uniq_', '']:
@@ -49,7 +49,7 @@ class EmoLex_wlist:
         columns.append('ratio_uniq')
 
         self.comment_analysis_df = pd.DataFrame(columns=columns)
-        self.emolex_df = pd.read_csv(wlist_path,  names=['Word','Emotion','Association'], skiprows=1, sep='\t')
+        self.emolex_df = emolex_df
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()
 

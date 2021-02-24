@@ -40,7 +40,7 @@ def get_header():
 
 class EmoAff_wlist:
 
-    def __init__(self, wlist_path: str) -> None:
+    def __init__(self, emoaff_df) -> None:
         columns = []
         for datatype in iteraffects():
             for analysis in ['means', 'stds']:
@@ -51,7 +51,7 @@ class EmoAff_wlist:
                 columns.append(f"{datatype}_{analysis}")
 
         self.comment_analysis_df = pd.DataFrame(columns=columns)
-        self.emoaff_df = pd.read_csv(wlist_path, names=['Word','Score','Affect'], skiprows=1, sep='\t', index_col=False)
+        self.emoaff_df = emoaff_df
 
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()

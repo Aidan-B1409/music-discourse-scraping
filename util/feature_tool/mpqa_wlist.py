@@ -34,7 +34,7 @@ def get_header():
 
 class MPQA_wlist:
 
-    def __init__(self, wlist_path: str) -> None:
+    def __init__(self, mpqa_df) -> None:
         columns = []
         for datatype in ['positive', 'negative']:
             for uniq_status in ['uniq_', '']:
@@ -44,7 +44,7 @@ class MPQA_wlist:
         columns.append('ratio_uniq')
 
         self.comment_analysis_df = pd.DataFrame(columns=columns)
-        self.mpqa_df = pd.read_csv(wlist_path,  names=['Word','Sentiment'], skiprows=0)
+        self.mpqa_df = mpqa_df
 
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()

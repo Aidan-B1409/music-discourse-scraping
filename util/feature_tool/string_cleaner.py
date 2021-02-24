@@ -35,6 +35,7 @@ def clean_comment(comment) -> list:
 # song_df is the raw data
 # TODO - This will not work when analyzing n-grams! Find another way!
 # Find union of n-gram wordlist and comment strings? 
+# TODO - pandas-ify
 def make_word_df(comment_list) -> pd.DataFrame:
     word_dict = {}
     # count number of times each word occurs and put in dictionary

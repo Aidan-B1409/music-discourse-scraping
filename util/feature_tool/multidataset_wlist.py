@@ -46,7 +46,7 @@ def get_header():
 
 class MultiDataset_wlist:
  
-    def __init__(self, wlist_paths: dict) -> None:
+    def __init__(self, wordlists: dict) -> None:
         self.comment_analysis_dfs = {key: pd.DataFrame() for key in combinations}
         for dataset in combinations:
             columns = []
@@ -59,14 +59,18 @@ class MultiDataset_wlist:
                         columns.append(f"{datatype}_{affect_type}_{analysis}")
             self.comment_analysis_dfs[dataset] = pd.DataFrame(columns=columns)
 
-        self.wlist_paths = wlist_paths
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()
 
-        self.emovad_df = pd.read_csv(self._getpath('EmoVAD'), names=['Word','Valence','Arousal','Dominance'], skiprows=1,  sep='\t')
-        self.emolex_df = pd.read_csv(self._getpath('EmoLex'), names=['Word','Emotion','Association'], skiprows=1, sep='\t')
-        self.mpqa_df = pd.read_csv(self._getpath('MPQA'),  names=['Word','Sentiment'], skiprows=0)
-        self.bsmvad_df = self._load_bsmvad(self._getpath('ANEW_Extended'))
+        self.emovad_df = wordlists['EmoVAD'].copy()
+        self.emolex_df = wordlists['EmoLex'].copy()
+        self.mpqa_df = wordlists['MPQA'].copy()
+        self.bsmvad_df = wordlists['ANEW_Extended'].copy()
+
+        columns = {'V.Mean.Sum': 'Valence',
+                    'A.Mean.Sum': 'Arousal',
+                    'D.Mean.Sum': 'Dominance'}
+        self.bsmvad_df.rename(columns = columns, inplace=True)
 
         # WARNING - very tightly coupled to global 'combinations'
         # Check there before changing 
@@ -159,12 +163,9 @@ class MultiDataset_wlist:
         excluded_indexes = df[df['Sentiment'] != affect_key].index
         return df.drop(excluded_indexes).copy()
 
-    def _getpath(self, key):
-        return getcwd() + '/wordlists/' + self.wlist_paths[key]
-
     def _itervad(self):
         for data_type in [('v', 'Valence'), ('a', 'Arousal'), ('d', 'Dominance')]:
-            yield data_type[0], data_type[1]\
+            yield data_type[0], data_type[1]
 
     def _get_minmaxmost_words(self, df, data_key) -> dict:
         return {
@@ -187,16 +188,3 @@ class MultiDataset_wlist:
 
     def _write_most(self, dict, df, write_key, wordlist_key):
         dict[f"{write_key}_most_word"] = df.at[df['Count'].idxmax(), wordlist_key]
-
-    def _load_bsmvad(self, path)-> pd.DataFrame:
-        bsmvad_df = pd.read_csv(path, encoding='utf-8', engine='python')
-        # drop unneeded columns
-        bsmvad_df.drop(bsmvad_df.iloc[:, 10:64].columns, axis = 1, inplace = True) 
-        bsmvad_df.drop(['V.Rat.Sum', 'A.Rat.Sum','D.Rat.Sum'], axis = 1, inplace = True) 
-        # drop blank rows, if any
-        bsmvad_df = bsmvad_df[bsmvad_df['Word'].notnull()]
-        columns = {'V.Mean.Sum': 'Valence',
-                    'A.Mean.Sum': 'Arousal',
-                    'D.Mean.Sum': 'Dominance'}
-        bsmvad_df.rename(columns = columns, inplace=True)
-        return bsmvad_df
