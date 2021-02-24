@@ -80,13 +80,16 @@ class MultiDataset_wlist:
             for index, datasets in enumerate(self.combos_tuple): 
                 root = combinations[index] + "_glob"
 
+                positive_words = self._get_affect_subset('positive', datasets[1]) if (datasets[1] is self.emolex_df) else self._get_mpqa_sentiment_subset('positive', datasets[1])
+                negative_words = self._get_affect_subset('negative', datasets[1]) if (datasets[1] is self.emolex_df) else self._get_mpqa_sentiment_subset('negative', datasets[1])
+                sentiment_dfs = {'positive': pd.merge(positive_words, datasets[0]), 'negative': pd.merge(negative_words, datasets[0])}
+
                 for data_type, data_key in self._itervad():
                     sentiment_counts = {"positive": 0, "negative":0}
                     uniq_sentiment_counts = {"positive": 0, "negative":0}
 
                     for affect_type in affects:
-                        semantic_wordlist = self._get_affect_subset(affect_type, datasets[1]) if (datasets[1] is self.emolex_df) else self._get_mpqa_sentiment_subset(affect_type, datasets[1])
-                        vad_wordlist = pd.merge(semantic_wordlist, datasets[0])
+                        vad_wordlist = sentiment_dfs[affect_type]
 
                         matched_words = unsquished_intersection(song_df, vad_wordlist)
                         matched_uniq_words = glob_intersection(glob_df, vad_wordlist)

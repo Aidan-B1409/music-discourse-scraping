@@ -13,6 +13,7 @@ import emoaff_wlist
 import multidataset_wlist
 from FeatureGenerator import FeatureGenerator
 from analysis import analyze_features
+from tqdm import tqdm
 
 
 # Some terminology to help out whoever has to interpret this 
@@ -43,7 +44,7 @@ class App:
         with open(data_csv_name, 'w', newline='', encoding='utf-8') as csvfile:
             csvwriter = csv.DictWriter(csvfile, self.m_features.keys())
             csvwriter.writeheader()
-            for song_df in self.song_csv_generator():
+            for song_df in tqdm(self.song_csv_generator()):
                 features = FeatureGenerator(song_df).get_features()
                 csvwriter.writerow(features)
 
@@ -52,5 +53,5 @@ class App:
         analyze_features(data_csv_name, analysis_csv_name, self.m_features)
 
 if __name__ == "__main__":
-    fe = App(comment_path="/mnt/g/new_data/subset_deezer_test")
+    fe = App(comment_path="/mnt/g/subset_deezer_test/")
     fe.main()
