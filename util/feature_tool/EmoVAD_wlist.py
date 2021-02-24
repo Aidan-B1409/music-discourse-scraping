@@ -1,4 +1,5 @@
 import pandas as pd 
+import time
 
 from wlist_utils import *
 from string_cleaner import clean_comment
@@ -105,7 +106,7 @@ class EmoVAD_wlist:
                 self.comment_analysis_df.at[index, f"{data_type}_max_words"] = minmaxmost['max_word_score']
                 self.comment_analysis_df.at[index, f"{data_type}_min_words"] = minmaxmost['min_word_score']
                 self.comment_analysis_df.at[index, f"{data_type}_most_words"] = minmaxmost['most_word_score']
-
+    
     def analyze_comments(self) -> dict:
         root = "EmoVAD"
         for data_type, data_key in self._itervad():
@@ -114,7 +115,6 @@ class EmoVAD_wlist:
                     feature_key = f"{root}_{data_type}{uniq_status}_{analysis_type}"
                     df_key = f"{data_type}{uniq_status}_{analysis_type}"
                     self._write_mean_std(self.features_commentlevel, feature_key, df_key, self.comment_analysis_df)
-        for data_type, data_key in self._itervad():
             for analysis_type in ['max_words', 'min_words', 'most_words']:
                 feature_key = f"{root}_{data_type}_{analysis_type}"
                 df_key = f"{data_type}_{analysis_type}"

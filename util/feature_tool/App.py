@@ -145,5 +145,5 @@ class App:
 
 
 if __name__ == "__main__":
-    fe = App(comment_path="/mnt/g/smaller_data_subset/")
+    fe = App(comment_path="/mnt/g/bigfiles_subset/")
     fe.main()
