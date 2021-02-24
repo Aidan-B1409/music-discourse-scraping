@@ -35,16 +35,14 @@ class FeatureGenerator:
         features.update(MetaGenerator(self.song_df, self.glob_df).get_features())
         
         for wlist in self._build_wordlists():
-            wordlist_tic = time.perf_counter()
             if self.event.wait(0):
                 sys.exit()
             features.update(wlist.wordlevel_analysis(self.song_df, self.glob_df))
-            # for i, row in enumerate(self.song_df['Comment Body']):
-            #     if self.event.wait(0):
-            #         sys.exit()
-            #     wlist.process_comment(i, row)
-            # features.update(wlist.analyze_comments())
-            wordlist_toc = time.perf_counter()
-            print(f'wordlist {wlist} generation time: {wordlist_toc - wordlist_tic}\n')
+            for i, row in enumerate(self.song_df['Comment Body']):
+                if self.event.wait(0):
+                    sys.exit()
+                wlist.process_comment(i, row)
+            features.update(wlist.analyze_comments())
+
         return features
 
