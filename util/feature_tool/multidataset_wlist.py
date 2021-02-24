@@ -62,10 +62,11 @@ class MultiDataset_wlist:
         self.features_wordlevel = get_glob_headers()
         self.features_commentlevel = get_commentlevel_headers()
 
-        self.emovad_df = wordlists['EmoVAD'].copy()
-        self.emolex_df = wordlists['EmoLex'].copy()
-        self.mpqa_df = wordlists['MPQA'].copy()
-        self.bsmvad_df = wordlists['ANEW_Extended'].copy()
+        self.emovad_df = wordlists['EmoVAD'].copy().set_index('Word')
+        self.emolex_df = wordlists['EmoLex'].copy().set_index('Word')
+        self.mpqa_df = wordlists['MPQA'].copy().set_index('Word')
+        self.bsmvad_df = wordlists['ANEW_Extended'].copy().set_index('Word')
+
 
         columns = {'V.Mean.Sum': 'Valence',
                     'A.Mean.Sum': 'Arousal',
@@ -86,7 +87,8 @@ class MultiDataset_wlist:
 
                 positive_words = self._get_affect_subset('positive', datasets[1]) if (datasets[1] is self.emolex_df) else self._get_mpqa_sentiment_subset('positive', datasets[1])
                 negative_words = self._get_affect_subset('negative', datasets[1]) if (datasets[1] is self.emolex_df) else self._get_mpqa_sentiment_subset('negative', datasets[1])
-                sentiment_dfs = {'positive': pd.merge(positive_words, datasets[0]), 'negative': pd.merge(negative_words, datasets[0])}
+                # positive_words.set_index('Word', inplace=True)
+                sentiment_dfs = {'positive': positive_words.join(datasets[0], how='inner'), 'negative': negative_words.join(datasets[0], how='inner')}
 
                 for data_type, data_key in self._itervad():
                     sentiment_counts = {"positive": 0, "negative":0}
@@ -122,6 +124,7 @@ class MultiDataset_wlist:
 
         unique_words_df = make_word_df(comment_list)
         words_df = pd.DataFrame(comment_list, columns=['Word'])
+        words_df.set_index('Word', inplace=True)
 
         for dfidx, analysis_df in enumerate(self.comment_analysis_dfs.values()):
             root = combinations[dfidx]
@@ -129,10 +132,12 @@ class MultiDataset_wlist:
             
             for affect_type in affects:
                 affect_wordlist = self._get_affect_subset(affect_type, datasets[1]) if (datasets[1] is self.emolex_df) else self._get_mpqa_sentiment_subset(affect_type, datasets[1])
-                vad_affect_wordlist = pd.merge(affect_wordlist, datasets[0])
+                #vad_affect_wordlist = pd.merge(affect_wordlist, datasets[0])
+                vad_affect_wordlist = affect_wordlist.join(datasets[0], how='inner')
 
                 found_uniq_word_df = glob_intersection(unique_words_df, vad_affect_wordlist)
-                found_words_df = pd.merge(words_df, vad_affect_wordlist, on='Word')
+                #found_words_df = pd.merge(words_df, vad_affect_wordlist, on='Word')
+                found_words_df = words_df.join(vad_affect_wordlist, how='inner')
 
                 for data_type, data_key in self._itervad():
                     data = get_mean_std(found_words_df[data_key], len(found_words_df))
